@@ -29,6 +29,8 @@ This mod includes several features for the purposes of easing administration or 
   - Prevents taking damage if player is logged out (elytra + damage fireworks + disconnect)
   - Prevents void trading generating experience orbs (does not patch void trading)
   - Prevents general packet nasties with a player action packet rate limit (configurable via gamerule, but will only work if you set a general rate limit in server.properties. I recommend a rate limit of 50.)
+  - Fixes nocom crash
+  - Fixes bow instakill
 
 
 **Gamerules (default in parenthesis)**
