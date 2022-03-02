@@ -8,16 +8,16 @@ This mod includes several features for the purposes of easing administration or 
 
 
 **ADMIN COMMANDS (operator power required in parenthesis):**
-  - (2) /fly <player> <true/false> : set the mayFly ability
-  - (2) /flyspeed <player> <float> : set the flyspeed (default 0.05)
-  - (2) /god <player> <true/false> : set the invulnerable ability
-  - (2) /setweathertime <rain/thunder/clear> <int> : set one of the internal weather counters
-  - (4) /opwp <player> <1-4> : op a player with a custom operator power
+  - (2) /fly (player) (true/false) : set the mayFly ability
+  - (2) /flyspeed (player) (float) : set the flyspeed (default 0.05)
+  - (2) /god (player) (true/false) : set the invulnerable ability
+  - (2) /setweathertime (rain/thunder/clear) (int) : set one of the internal weather counters
+  - (4) /opwp (player) (1-4) : op a player with a custom operator power
   
   
 **GENERAL COMMANDS (no permissions needed):**
   - /getweather : print all the internal weather counters
-  - /setscoreboard <scoreboard> : set the sidebar scoreboard. Useful with a datapack that makes scoreboards for all statistics.
+  - /setscoreboard (scoreboard) : set the sidebar scoreboard. Useful with a datapack that makes scoreboards for all statistics.
   - /suicide : kill the executor
   - /discord : prints a clickable discord link in chat, sadly hardcoded for now
   - /dynmaplink : prints a clickable dynmap link in chat, sadly hardcoded for now
