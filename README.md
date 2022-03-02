@@ -27,7 +27,7 @@ This mod includes several features for the purposes of easing administration or 
   - Prevents item transfers if the donkey is not loaded
   - Prevents item transfers if the shulker box is not placed
   - Prevents taking damage if player is logged out (elytra + damage fireworks + disconnect)
-  - Prevents void trading generating experience orbs (does not patch void trading)
+  - Prevents void trading generating experience orbs (does not patch void trading, because void trading is awesome)
   - Prevents general packet nasties with a player action packet rate limit (configurable via gamerule, but will only work if you set a general rate limit in server.properties. I recommend a rate limit of 50.)
   - Fixes nocom crash
   - Fixes bow instakill
