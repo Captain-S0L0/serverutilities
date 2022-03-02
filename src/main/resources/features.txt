@@ -1,0 +1,33 @@
+Anti-dupes / exploits:
+- prevents item transfers if the donkey is not loaded
+- prevents item transfers if the shulker box is not placed
+- prevents taking damage if player is logged out (elytra + damage fireworks + disconnect)
+- prevents void trading generating experience orbs (does not patch void trading)
+- prevents general packet nasties with a player action packet rate limit (hardcoded)
+
+Commands:
+- /fly <player> : toggles allowFlying
+- /flyspeed <float> <player> : sets flySpeed, default is 0.05
+- /godmode <player> : toggles invulnerable
+- /getweather : prints debug about the weather in a world
+- /setweathertime <rain/thunder/clear> <ticks> : sets the selected weather timer
+- /opwp <power> : op a player with a custom operator level
+- /setscoreboard <scoreboard> : sets the sidebar display to the selected scoreboard
+- /suicide : kills the command's executor
+- /discord: prints the Terrible Friends discord link. hardcoded.
+- /dynmaplink: prints the Terrible Friends dynmap link. hardcoded.
+
+Adventure Mode Modifiers:
+- Defaults with invulnerable:1b
+- Cannot dispense items from dispenser onto player
+- Cannot pick up item entities
+- Cannot interact with blocks
+- Cannot interact with entities
+- Cannot attack entities
+- Cannot drop items
+
+Other / Misc changes:
+- Added "horseSpeedMultiplier" gamerule, changes max speed horses can spawn with
+- If a horse is loaded with a higher speed than allowed, the speed is reduced to the max (CANNOT REVERT)
+- Added "endDisabled" gamerule, if true will prevent eyes from being placed into end portals
+- CLICKABLE LINKS IN CHAT

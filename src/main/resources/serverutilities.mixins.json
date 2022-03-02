@@ -1,0 +1,32 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.terriblefriends.serverutilities.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "ArmorItemMixin",
+    "GameModeMixin",
+    "ItemEntityMixin",
+    "ServerPlayerEntityMixin",
+    "ServerPlayerInteractionManagerMixin",
+    "ServerPlayNetworkHandlerMixin",
+    "NoEndMixin",
+    "DamageMixin",
+    "HorseScreenHandlerMixin",
+    "ScreenHandlerMixin",
+    "VillagerEntityMixin",
+    "WanderingTraderEntityMixin",
+    "PlayerManagerMixin",
+    "ServerWorldMixin",
+    "SetPlayerAbilitiesMixin",
+    "HorseBaseEntityMixin",
+    "ShulkerBoxScreenHandlerMixin",
+    "ClientConnnectionMixin",
+    "RateLimitedConnectionMixin",
+    "AbstractMinecartEntityMixin",
+    "FireChargeItemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

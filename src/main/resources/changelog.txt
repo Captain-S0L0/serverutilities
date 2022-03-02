@@ -1,0 +1,38 @@
+0.0.1
+- original merge of playerabilities, greylistmod, and noexploits
+- built for 1.18-pre4
+0.0.2
+- fixed only working for 1.18 pre-releases
+- built for 1.18.x
+0.0.3
+- fixed the no end message displaying when clicking on any block, not just end portal frames
+- modified player right-click interaction to work in spawn protection if both hands are empty
+- unfinished / unimplemented minecart speed boost
+0.0.4
+- added check when moving items in shulker boxes to make sure the box still exists to patch dupe
+- cleaned some older anti-dupe checks / unused code
+- changed permissions for /getweather to everyone instead lvl 2 op
+0.0.5
+- patched nocom crash
+- changed rate limit kick to check every tick + drop packets after kick from ratelimit
+- created seperate playeraction rate limit
+- patched instakill bow
+0.0.6
+- patched armor dispensers not applying to armor stands
+0.0.7
+- make it so strings starting with "http" become clickable automatically in chat
+- added /discord
+- added /dynmaplink
+0.0.8
+- rewrote nocom crash patch
+- refactor remnants of old mods into serverutilities path
+- refactored Serverutilities -> ServerUtilities
+- added gamerule adventureGhostMode, default false
+- added gamerule minecartSpeedMultiplier, default 1 (doesn't work currently)
+- imported throwable fireballs
+- added gamerule throwableFireballs, default false
+- added gamerule throwableFireballPower, default 1
+- changed /godmode -> /god
+- implemented specifying true or false for /fly and /god
+- fixed /fly only targeting 1 player
+- changed some command broadcast messages
