@@ -4,7 +4,7 @@ a collection of exploit fixes, commands, and other things for fabric mc
 
 This mod is not really intended to be an uber maintained project, it is more of a passion project for my minecraft server, Terrible Friends. Of course, if you have any bugs, PLEASE REPORT THEM!!!
 
-This mod includes several commands for the purposes of easing administration or adding features.
+This mod includes several features for the purposes of easing administration or general gameplay.
 
 
 **ADMIN COMMANDS (operator power required in parenthesis):**
