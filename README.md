@@ -67,3 +67,7 @@ This mod includes several features for the purposes of easing administration or 
   - some general better anticheat things, like antifly
   - prevent explosions in spawn
   - prevent nether portal generation in spawn
+
+
+**Credits (aka people's code I've used / taken inspiration from / adapted / etc.)**
+- https://github.com/Chropal/nocom_patch/, for a much better patch than the one I made.
