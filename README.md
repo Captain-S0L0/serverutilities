@@ -73,3 +73,7 @@ This mod includes several features for the purposes of easing administration or 
 
 **Credits (aka people's code I've used / taken inspiration from / adapted / etc.)**
 - https://github.com/Chropal/nocom_patch/, for a much better patch than the one I made.
+
+**Using my code**
+
+I really don't mind if you use my code as long as you give credit. Most of my code is dogshit, so feel free to improve it yourself, or compile this mod differently to only include the features that you want / need / fit your purposes.
