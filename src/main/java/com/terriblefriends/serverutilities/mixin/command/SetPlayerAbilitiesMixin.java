@@ -1,4 +1,4 @@
-package com.terriblefriends.serverutilities.mixin;
+package com.terriblefriends.serverutilities.mixin.command;
 
 import com.terriblefriends.serverutilities.access.SetPlayerAbilitiesAccess;
 import net.minecraft.entity.player.PlayerAbilities;

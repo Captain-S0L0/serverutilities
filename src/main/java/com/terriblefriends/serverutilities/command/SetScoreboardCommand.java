@@ -3,19 +3,20 @@ package com.terriblefriends.serverutilities.command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
+import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.ScoreboardObjectiveArgumentType;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 
 import static net.minecraft.server.command.CommandManager.literal;
 
 public class SetScoreboardCommand {
-    private static final SimpleCommandExceptionType OBJECTIVES_DISPLAY_ALREADY_SET_EXCEPTION = new SimpleCommandExceptionType(new TranslatableText("commands.scoreboard.objectives.display.alreadySet"));
+    private static final SimpleCommandExceptionType OBJECTIVES_DISPLAY_ALREADY_SET_EXCEPTION = new SimpleCommandExceptionType(Text.translatable("commands.scoreboard.objectives.display.alreadySet"));
 
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, boolean dedicated) {
+    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess registryAccess, CommandManager.RegistrationEnvironment environment) {
         dispatcher.register(literal("setscoreboard")
                 .then(CommandManager.argument("objective", ScoreboardObjectiveArgumentType.scoreboardObjective()).executes(ctx -> executeSetDisplay(ctx.getSource(), ScoreboardObjectiveArgumentType.getObjective(ctx, "objective")))));
     }
@@ -26,7 +27,7 @@ public class SetScoreboardCommand {
             throw OBJECTIVES_DISPLAY_ALREADY_SET_EXCEPTION.create();
         } else {
             scoreboard.setObjectiveSlot(1, objective);
-            source.sendFeedback(new TranslatableText("commands.scoreboard.objectives.display.set", new Object[]{Scoreboard.getDisplaySlotNames()[1], objective.getDisplayName()}), true);
+            source.sendFeedback(Text.translatable("commands.scoreboard.objectives.display.set", new Object[]{Scoreboard.getDisplaySlotNames()[1], objective.getDisplayName()}), true);
             return 0;
         }
     }

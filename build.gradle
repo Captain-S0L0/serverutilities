@@ -1,6 +1,10 @@
 plugins {
-    id 'fabric-loom' version '0.10-SNAPSHOT'
+    id 'fabric-loom' version '0.12-SNAPSHOT'
     id 'maven-publish'
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/serverutilities.aw")
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8

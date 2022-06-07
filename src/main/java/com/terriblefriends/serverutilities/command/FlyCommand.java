@@ -4,10 +4,11 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.terriblefriends.serverutilities.access.SetPlayerAbilitiesAccess;
+import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 
 import java.util.Collection;
@@ -20,7 +21,7 @@ import static net.minecraft.server.command.CommandManager.literal;
 
 public class FlyCommand {
 
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, boolean dedicated) {
+    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess registryAccess, CommandManager.RegistrationEnvironment environment) {
         dispatcher.register(literal("fly")
                 .requires(source -> source.hasPermissionLevel(2))
                 .then(argument("boolean", BoolArgumentType.bool()).executes(ctx -> handleSet(ctx.getSource(), null,getBool(ctx,"boolean"))))
@@ -54,8 +55,8 @@ public class FlyCommand {
     }
 
     private static void toggleFly(ServerPlayerEntity player, ServerCommandSource source) {
-        final Text on = new LiteralText("Set "+player.getEntityName()+" mayFly = true");
-        final Text off = new LiteralText("Set "+player.getEntityName()+" mayFly = false");
+        final Text on = Text.literal("Set "+player.getEntityName()+" mayFly = true");
+        final Text off = Text.literal("Set "+player.getEntityName()+" mayFly = false");
 
         if (!player.getAbilities().allowFlying) {
             ((SetPlayerAbilitiesAccess)player.getAbilities()).setAllowFlying(true);
@@ -70,8 +71,8 @@ public class FlyCommand {
     }
 
     private static void setFly(ServerPlayerEntity player, ServerCommandSource source, boolean fly) {
-        final Text on = new LiteralText("Set "+player.getEntityName()+" mayFly = true");
-        final Text off = new LiteralText("Set "+player.getEntityName()+" mayFly = false");
+        final Text on = Text.literal("Set "+player.getEntityName()+" mayFly = true");
+        final Text off = Text.literal("Set "+player.getEntityName()+" mayFly = false");
 
         if (fly) {
             ((SetPlayerAbilitiesAccess)player.getAbilities()).setAllowFlying(true);

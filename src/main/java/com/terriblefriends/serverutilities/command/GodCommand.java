@@ -4,10 +4,11 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.terriblefriends.serverutilities.access.SetPlayerAbilitiesAccess;
+import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 
 import java.util.Collection;
@@ -19,7 +20,7 @@ import static net.minecraft.server.command.CommandManager.literal;
 
 
 public class GodCommand {
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, boolean dedicated) {
+    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess registryAccess, CommandManager.RegistrationEnvironment environment) {
         dispatcher.register(literal("god")
                 .requires(source -> source.hasPermissionLevel(2))
                 .then(argument("boolean", BoolArgumentType.bool()).executes(ctx -> handleSet(ctx.getSource(), null,getBool(ctx,"boolean"))))
@@ -52,8 +53,8 @@ public class GodCommand {
     }
 
     private static void toggleGodMode(ServerPlayerEntity player, ServerCommandSource source) {
-        final Text on = new LiteralText("Set "+player.getEntityName()+" invulnerable = true");
-        final Text off = new LiteralText("Set "+player.getEntityName()+" invulnerable = false");
+        final Text on = Text.literal("Set "+player.getEntityName()+" invulnerable = true");
+        final Text off = Text.literal("Set "+player.getEntityName()+" invulnerable = false");
 
         if (!player.getAbilities().invulnerable) {
             ((SetPlayerAbilitiesAccess)player.getAbilities()).setInvulnerable(true);
@@ -67,8 +68,8 @@ public class GodCommand {
     }
 
     private static void setGodMode(ServerPlayerEntity player, ServerCommandSource source, boolean god) {
-        final Text on = new LiteralText("Set "+player.getEntityName()+" invulnerable = true");
-        final Text off = new LiteralText("Set "+player.getEntityName()+" invulnerable = false");
+        final Text on = Text.literal("Set "+player.getEntityName()+" invulnerable = true");
+        final Text off = Text.literal("Set "+player.getEntityName()+" invulnerable = false");
 
         if (god) {
             ((SetPlayerAbilitiesAccess)player.getAbilities()).setInvulnerable(true);

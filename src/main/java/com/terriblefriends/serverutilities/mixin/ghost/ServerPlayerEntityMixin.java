@@ -1,4 +1,4 @@
-package com.terriblefriends.serverutilities.mixin;
+package com.terriblefriends.serverutilities.mixin.ghost;
 
 import com.terriblefriends.serverutilities.access.ServerPlayerEntityAccess;
 import net.minecraft.server.network.ServerPlayerEntity;

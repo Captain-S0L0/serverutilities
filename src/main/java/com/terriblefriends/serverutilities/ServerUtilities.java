@@ -2,8 +2,9 @@ package com.terriblefriends.serverutilities;
 
 import com.terriblefriends.serverutilities.command.*;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.minecraft.server.world.ServerWorld;
@@ -22,7 +23,9 @@ public class ServerUtilities implements ModInitializer {
             GameRuleRegistry.register("throwableFireballs", GameRules.Category.PLAYER,GameRuleFactory.createBooleanRule(false));
     public static final GameRules.Key<GameRules.IntRule> THROWABLE_FIREBALL_POWER =
             GameRuleRegistry.register("throwableFireballPower", GameRules.Category.MISC,GameRuleFactory.createIntRule(1));
-    public static final int actionRateLimit = 20;
+    public static final GameRules.Key<GameRules.IntRule> ACTION_RATE_LIMIT =
+            GameRuleRegistry.register("actionRateLimit", GameRules.Category.MISC,GameRuleFactory.createIntRule(20));
+    public static int actionRateLimit = 20;
     public static ServerWorld overworld;
 
 
@@ -40,6 +43,9 @@ public class ServerUtilities implements ModInitializer {
         CommandRegistrationCallback.EVENT.register(DynmapCommand::register); // dynmaplink
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
             overworld = server.getOverworld();
+        });
+        ServerTickEvents.END_SERVER_TICK.register(server -> {
+            actionRateLimit = server.getOverworld().getGameRules().getInt(ACTION_RATE_LIMIT);
         });
     }
 }

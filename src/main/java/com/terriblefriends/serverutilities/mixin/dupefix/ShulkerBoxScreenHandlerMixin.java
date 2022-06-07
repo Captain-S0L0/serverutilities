@@ -1,4 +1,4 @@
-package com.terriblefriends.serverutilities.mixin;
+package com.terriblefriends.serverutilities.mixin.dupefix;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

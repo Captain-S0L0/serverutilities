@@ -4,10 +4,11 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.terriblefriends.serverutilities.access.SetPlayerAbilitiesAccess;
+import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 
 import java.util.Collection;
@@ -18,7 +19,7 @@ import static net.minecraft.server.command.CommandManager.literal;
 
 
 public class FlySpeedCommand {
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, boolean dedicated) {
+    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess registryAccess, CommandManager.RegistrationEnvironment environment) {
         dispatcher.register(literal("flyspeed")
                 .requires(source -> source.hasPermissionLevel(2))
                 .then(argument("speed", FloatArgumentType.floatArg(0.0f))
@@ -39,7 +40,7 @@ public class FlySpeedCommand {
     }
 
     private static void handlePlayers(ServerPlayerEntity player, ServerCommandSource source, float flo) {
-        final Text speed = new LiteralText("Set "+player.getEntityName()+"'s fly speed");
+        final Text speed = Text.literal("Set "+player.getEntityName()+"'s fly speed");
 
         ((SetPlayerAbilitiesAccess)player.getAbilities()).setFlySpeed(flo);
         source.sendFeedback(speed, true);

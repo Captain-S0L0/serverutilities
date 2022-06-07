@@ -8,20 +8,21 @@ import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import java.util.Collection;
 import java.util.Iterator;
 import com.terriblefriends.serverutilities.access.PlayerManagerAccess;
+import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.argument.GameProfileArgumentType;
 import net.minecraft.server.PlayerManager;
+import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
 public class OperatorCommand {
-    private static final SimpleCommandExceptionType ALREADY_OPPED_EXCEPTION = new SimpleCommandExceptionType(new TranslatableText("commands.op.failed"));
+    private static final SimpleCommandExceptionType ALREADY_OPPED_EXCEPTION = new SimpleCommandExceptionType(Text.translatable("commands.op.failed"));
 
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, boolean dedicated) {
+    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess registryAccess, CommandManager.RegistrationEnvironment environment) {
         dispatcher.register(literal("opwp")
                 .requires((source) -> source.hasPermissionLevel(3))
                 .then(argument("targets", GameProfileArgumentType.gameProfile()).suggests((context, builder) -> {
@@ -45,7 +46,7 @@ public class OperatorCommand {
             if (!playerManager.isOperator(gameProfile)) {
                 ((PlayerManagerAccess)(playerManager)).addToOperatorsWithPower(gameProfile, power);
                 ++i;
-                source.sendFeedback(new LiteralText("Opped "+gameProfile.getName()+" with power "+power), true);
+                source.sendFeedback(Text.literal("Opped "+gameProfile.getName()+" with power "+power), true);
             }
         }
 

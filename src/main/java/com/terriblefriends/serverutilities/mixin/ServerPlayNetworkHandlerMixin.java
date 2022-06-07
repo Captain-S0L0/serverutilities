@@ -5,24 +5,27 @@ import com.terriblefriends.serverutilities.access.ServerPlayerEntityAccess;
 import net.minecraft.client.option.ChatVisibility;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
-import net.minecraft.network.MessageType;
 import net.minecraft.network.Packet;
+import net.minecraft.network.message.MessageDecorator;
+import net.minecraft.network.message.MessageSignature;
+import net.minecraft.network.message.SignedMessage;
+import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket;
 import net.minecraft.network.packet.s2c.play.GameMessageS2CPacket;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.filter.FilteredMessage;
 import net.minecraft.server.filter.TextStream;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.ClickEvent;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -30,6 +33,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Arrays;
 
 import static net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket.Action.DROP_ITEM;
 import static net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket.Action.DROP_ALL_ITEMS;
@@ -43,7 +48,6 @@ public abstract class ServerPlayNetworkHandlerMixin {
     @Shadow public void disconnect(Text textComponent){}
     @Shadow @Final static Logger LOGGER;
     @Shadow public void sendPacket(Packet<?> packet){}
-    @Shadow private void executeCommand(String input){}
     @Shadow @Final private MinecraftServer server;
     @Shadow private int messageCooldown;
 
@@ -81,10 +85,22 @@ public abstract class ServerPlayNetworkHandlerMixin {
             distantBlockInteractions--;
         }
     }
+    @Shadow private boolean checkChatEnabled() {return false;}
+    @Shadow private void handleDecoratedMessage(FilteredMessage<SignedMessage> message) {}
 
-    @Inject(method="handleMessage",at=@At("HEAD"),cancellable = true)
-    private void handleMessageMixin(TextStream.Message message, CallbackInfo ci) { // implement clickable links into chat
-        if (this.player.getClientChatVisibility() == ChatVisibility.HIDDEN) {
+    /*@Inject(method="handleMessage",at=@At("HEAD"),cancellable = true)
+    private void handleMessageMixin(ChatMessageC2SPacket packet, FilteredMessage<String> message, CallbackInfo ci) { // implement clickable links into chat
+        if (this.checkChatEnabled()) {
+            MessageSignature messageSignature = packet.createSignatureInstance(this.player.getUuid());
+            boolean bl = packet.isPreviewed();
+            MessageDecorator messageDecorator = this.server.getMessageDecorator();
+
+            messageDecorator.decorateChat(this.player, message.map(Text::literal), messageSignature, bl).thenAcceptAsync(this::handleDecoratedMessage, this.server);
+        }
+        if (ci.isCancellable()) {ci.cancel();}
+    }*/
+
+    /*if (this.player.getClientChatVisibility() == ChatVisibility.HIDDEN) {
             this.sendPacket(new GameMessageS2CPacket((new TranslatableText("chat.disabled.options")).formatted(Formatting.RED), MessageType.SYSTEM, Util.NIL_UUID));
         } else {
             this.player.updateLastActionTime();
@@ -118,8 +134,6 @@ public abstract class ServerPlayNetworkHandlerMixin {
                 this.disconnect(new TranslatableText("disconnect.spam"));
             }
 
-        }
-        if (ci.isCancellable()) {ci.cancel();}
-    }
+        }*/
 
 }

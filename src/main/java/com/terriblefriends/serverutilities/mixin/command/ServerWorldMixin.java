@@ -1,4 +1,4 @@
-package com.terriblefriends.serverutilities.mixin;
+package com.terriblefriends.serverutilities.mixin.command;
 
 import com.terriblefriends.serverutilities.access.ServerWorldAccess;
 import net.minecraft.server.world.ServerWorld;
