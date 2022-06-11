@@ -41,6 +41,8 @@ public class ServerUtilities implements ModInitializer {
         CommandRegistrationCallback.EVENT.register(SetScoreboardCommand::register); // setscoreboard
         CommandRegistrationCallback.EVENT.register(DiscordCommand::register); // discord
         CommandRegistrationCallback.EVENT.register(DynmapCommand::register); // dynmaplink
+        CommandRegistrationCallback.EVENT.register(VoteCommand::register); //vote
+        CommandRegistrationCallback.EVENT.register(ShadowCommand::register); //shadow
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
             overworld = server.getOverworld();
         });

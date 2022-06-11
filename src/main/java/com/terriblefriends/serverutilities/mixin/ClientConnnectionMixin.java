@@ -1,11 +1,13 @@
 package com.terriblefriends.serverutilities.mixin;
 
 import com.terriblefriends.serverutilities.access.ClientConnectionAccess;
+import com.terriblefriends.serverutilities.access.RateLimitedConnectionAccess;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.OffThreadException;
 import net.minecraft.network.Packet;
+import net.minecraft.network.RateLimitedConnection;
 import net.minecraft.network.listener.PacketListener;
 import net.minecraft.network.packet.c2s.play.*;
 import net.minecraft.server.network.ServerLoginNetworkHandler;
@@ -21,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientConnection.class)
-public class ClientConnnectionMixin implements ClientConnectionAccess{
+public class ClientConnnectionMixin implements ClientConnectionAccess {
     @Shadow private void sendQueuedPackets() {}
     @Shadow private PacketListener packetListener;
     @Shadow private boolean disconnected;
@@ -71,10 +73,20 @@ public class ClientConnnectionMixin implements ClientConnectionAccess{
     private void channelRead0Mixin(ChannelHandlerContext channelHandlerContext, Packet<?> packet, CallbackInfo ci) {
         if (this.channel.isOpen()) {
             //limits ratelimit detection to movement / actions, should fix packet exploits while allowing fast crafting etc.
-            if (packet instanceof PlayerActionC2SPacket) {++this.actionPacketsReceivedCounter;}
-            if (packet instanceof PlayerInteractBlockC2SPacket) {++this.actionPacketsReceivedCounter;}
-            if (packet instanceof PlayerInteractEntityC2SPacket) {++this.actionPacketsReceivedCounter;}
-            if (packet instanceof PlayerMoveC2SPacket) {++this.actionPacketsReceivedCounter;}
+            if (cc instanceof RateLimitedConnection) {
+                if (packet instanceof PlayerActionC2SPacket) {
+                    ((RateLimitedConnectionAccess)(RateLimitedConnection)cc).increaseActionPacketsReceived();
+                }
+                if (packet instanceof PlayerInteractBlockC2SPacket) {
+                    ((RateLimitedConnectionAccess)(RateLimitedConnection)cc).increaseActionPacketsReceived();
+                }
+                if (packet instanceof PlayerInteractEntityC2SPacket) {
+                    ((RateLimitedConnectionAccess)(RateLimitedConnection)cc).increaseActionPacketsReceived();
+                }
+                if (packet instanceof PlayerMoveC2SPacket) {
+                    ((RateLimitedConnectionAccess)(RateLimitedConnection)cc).increaseActionPacketsReceived();
+                }
+            }
             ++this.packetsReceivedCounter;
             this.updateStats();
             if (this.channel.isOpen()) {
@@ -95,5 +107,8 @@ public class ClientConnnectionMixin implements ClientConnectionAccess{
         this.averagePacketsSent = MathHelper.lerp(0.75F, (float)this.packetsSentCounter, this.averagePacketsSent);
         this.averagePacketsReceived = MathHelper.lerp(0.75F, (float)this.packetsReceivedCounter, this.averagePacketsReceived);
         this.averageActionPacketsReceived = MathHelper.lerp(0.75F, (float)this.actionPacketsReceivedCounter, this.averageActionPacketsReceived);
+        this.packetsSentCounter = 0;
+        this.packetsReceivedCounter = 0;
+        this.actionPacketsReceivedCounter = 0;
     }
 }

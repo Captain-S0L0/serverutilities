@@ -9,22 +9,42 @@
     "ghost.ItemEntityMixin",
     "ghost.ServerPlayerEntityMixin",
     "ghost.ServerPlayerInteractionManagerMixin",
-    "ServerPlayNetworkHandlerMixin",
-    "command.NoEndMixin",
-    "dupefix.DamageMixin",
-    "dupefix.HorseScreenHandlerMixin",
     "ghost.ScreenHandlerMixin",
+
+    "dupefix.DamageMixin",
+    "dupefix.ScreenHandlerMixin",
     "dupefix.VillagerEntityMixin",
     "dupefix.WanderingTraderEntityMixin",
-    "PlayerManagerMixin",
+
+    "command.NoEndMixin",
     "command.ServerWorldMixin",
     "command.SetPlayerAbilitiesMixin",
     "command.HorseBaseEntityMixin",
-    "dupefix.ShulkerBoxScreenHandlerMixin",
-    "ClientConnnectionMixin",
-    "RateLimitedConnectionMixin",
     "command.AbstractMinecartEntityMixin",
-    "command.FireChargeItemMixin"
+    "command.FireChargeItemMixin",
+
+    "shadowfix.blockentity.BlockEntityMixin",
+    "shadowfix.blockentity.ThreadedAnvilChunkStorageMixin",
+    "shadowfix.blockentity.ShulkerBoxBlockMixin",
+
+    "shadowfix.entity.ServerEntityManagerMixin",
+    "shadowfix.entity.AbstractDonkeyEntityMixin",
+    "shadowfix.entity.StorageMinecartEntityMixin",
+    "shadowfix.entity.ItemEntityMixin",
+
+    "shadowfix.player.PlayerEntityMixin",
+    "shadowfix.player.PlayerInventoryMixin",
+    "shadowfix.player.WorldSaveHandlerMixin",
+
+    "ServerPlayNetworkHandlerMixin",
+    "RateLimitedConnectionMixin",
+    "PlayerManagerMixin"
+  ],
+  "client": [
+    "shadowfix.player.PlayerManagerMixin_CLIENT"
+  ],
+  "server": [
+    "shadowfix.player.PlayerManagerMixin_SERVER"
   ],
   "injectors": {
     "defaultRequire": 1

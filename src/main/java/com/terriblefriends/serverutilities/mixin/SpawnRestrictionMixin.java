@@ -17,7 +17,7 @@ import java.util.Random;
 
 @Mixin(SpawnRestriction.class)
 public class SpawnRestrictionMixin {
-    @Inject(method="canSpawn(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/util/math/BlockPos;Ljava/util/Random;)Z",at=@At("HEAD"),cancellable = true)
+    /*@Inject(method="canSpawn(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/util/math/BlockPos;Ljava/util/Random;)Z",at=@At("HEAD"),cancellable = true)
     private static <T extends Entity> void canSpawnMixin(EntityType<T> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random, CallbackInfoReturnable<Boolean> cir) {
         if (world.toServerWorld().getRegistryKey() == World.OVERWORLD) {
             BlockPos $$3 = world.toServerWorld().getSpawnPos();
@@ -32,6 +32,6 @@ public class SpawnRestrictionMixin {
                 }
             }
         }
-    }
+    }*/
 
 }
