@@ -41,3 +41,7 @@
 0.1.1
 - imported no mobs spawning in spawn protection
 - update to 1.18.2
+0.1.2
+- update to 1.19
+- patch allay item duplication with nether portals
+- merge of itemshadowfixes, but mostly disabled as entity saving is bjorked

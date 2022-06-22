@@ -7,10 +7,13 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.GameRules;
 
 public class ServerUtilities implements ModInitializer {
+    public static MinecraftServer server;
+
     public static final GameRules.Key<GameRules.BooleanRule> END_DISABLED =
             GameRuleRegistry.register("endDisabled", GameRules.Category.MISC, GameRuleFactory.createBooleanRule(false));
     public static final GameRules.Key<GameRules.IntRule> HORSE_SPEED_MULTIPLIER =
@@ -43,11 +46,14 @@ public class ServerUtilities implements ModInitializer {
         CommandRegistrationCallback.EVENT.register(DynmapCommand::register); // dynmaplink
         CommandRegistrationCallback.EVENT.register(VoteCommand::register); //vote
         CommandRegistrationCallback.EVENT.register(ShadowCommand::register); //shadow
-        ServerLifecycleEvents.SERVER_STARTED.register(server -> {
-            overworld = server.getOverworld();
+        CommandRegistrationCallback.EVENT.register(VoteBanCommand::register); //voteban
+        ServerLifecycleEvents.SERVER_STARTED.register(serverArg -> {
+            overworld = serverArg.getOverworld();
+            server = serverArg;
         });
         ServerTickEvents.END_SERVER_TICK.register(server -> {
             actionRateLimit = server.getOverworld().getGameRules().getInt(ACTION_RATE_LIMIT);
+            VoteBanCommand.tickBanVoter();
         });
     }
 }
