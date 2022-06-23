@@ -27,12 +27,23 @@
     "shadowfix.player.PlayerInventoryMixin",
     "shadowfix.player.PlayerEntityMixin",
 
+    "shadowfix.blockentity.BlockEntityMixin",
+    "shadowfix.blockentity.ShulkerBoxBlockMixin",
+    "shadowfix.blockentity.ThreadedAnvilChunkStorageMixin",
+
+    "shadowfix.entity.AbstractDonkeyEntityMixin",
+    "shadowfix.entity.ItemEntityMixin",
+    "shadowfix.entity.ServerEntityManagerMixin",
+    "shadowfix.entity.StorageMinecartEntityMixin",
+
+    "shadowfix.entity.EntityMixin",
+
     "ServerPlayNetworkHandlerMixin",
     "RateLimitedConnectionMixin",
     "PlayerManagerMixin",
     "misc.BeeEntityMixin",
-    "misc.ServerEntityManagerMixin",
-    "misc.GiveInventoryToLookTargetTaskMixin"
+    "misc.GiveInventoryToLookTargetTaskMixin",
+    "misc.LecternScreenHandlerMixin"
   ],
   "client": [
     "shadowfix.player.PlayerManagerMixin_CLIENT"

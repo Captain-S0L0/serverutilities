@@ -2,8 +2,11 @@ package com.terriblefriends.serverutilities.mixin.shadowfix.entity;
 
 import com.google.common.collect.ImmutableList;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.server.world.ServerEntityManager;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.entity.EntityChangeListener;
 import net.minecraft.world.entity.EntityLike;
 import net.minecraft.world.entity.SectionedEntityCache;
 import net.minecraft.world.storage.ChunkDataAccess;
@@ -32,7 +35,7 @@ public class ServerEntityManagerMixin<T extends EntityLike> {
         if (status == ServerEntityManager.Status.PENDING) {
             cir.setReturnValue(false);
         } else {
-            List list = this.cache.getTrackingSections(chunkPos).flatMap((section) -> {
+            List<T> list = this.cache.getTrackingSections(chunkPos).flatMap((section) -> {
                 return section.stream().filter(EntityLike::shouldSave);
             }).collect(Collectors.toList());
             if (list.isEmpty()) {

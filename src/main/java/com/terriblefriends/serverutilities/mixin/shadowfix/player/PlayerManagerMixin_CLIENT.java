@@ -63,11 +63,12 @@ public class PlayerManagerMixin_CLIENT {
         }
         player.detach();
         player.getAdvancementTracker().clearCriteria();
+        player.getAdvancementTracker().save();
         this.players.remove(player);
         this.server.getBossBarManager().onPlayerDisconnect(player);
         UUID uUID = player.getUuid();
         ServerPlayerEntity serverPlayerEntity = this.playerMap.get(uUID);
-        if (serverPlayerEntity == player) {
+        if (serverPlayerEntity.getUuid() == player.getUuid()) {
             this.playerMap.remove(uUID);
             this.statisticsMap.remove(uUID);
             this.advancementTrackers.remove(uUID);

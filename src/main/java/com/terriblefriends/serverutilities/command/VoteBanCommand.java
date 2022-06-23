@@ -43,7 +43,8 @@ public class VoteBanCommand {
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess registryAccess, CommandManager.RegistrationEnvironment environment) {
         dispatcher.register(literal("voteban")
-                .then(literal("vote").then(argument("player", EntityArgumentType.player()).then(argument("reason", MessageArgumentType.message()).executes(ctx -> handleVote(ctx.getSource(), getPlayer(ctx, "player"), getMessage(ctx,"reason"))))))
+                .then(literal("vote").then(argument("player", EntityArgumentType.player()).executes(ctx -> handleVote(ctx.getSource(), getPlayer(ctx, "player"), null))
+                        .then(argument("reason", MessageArgumentType.message()).executes(ctx -> handleVote(ctx.getSource(), getPlayer(ctx, "player"), getMessage(ctx,"reason"))))))
                 .then(literal("confirm").executes(ctx -> handleConfirm(ctx.getSource())))
                 .executes(ctx -> helpMenu(ctx.getSource()))
         );
@@ -76,7 +77,7 @@ public class VoteBanCommand {
                 source.getServer().getPlayerManager().broadcast(Text.literal(source.getName()).formatted(Formatting.RED).append(Text.literal(" has initiated a vote to temp ban ").formatted(Formatting.YELLOW)).append(Text.literal(votedOut.getEntityName()).formatted(Formatting.DARK_RED)), MessageType.SYSTEM);
                 source.getServer().getPlayerManager().broadcast(Text.literal("The reason provided is: ").formatted(Formatting.DARK_RED).append(VBI.reason.copy().formatted(Formatting.GOLD)), MessageType.SYSTEM);
                 source.getServer().getPlayerManager().broadcast(Text.literal("This system is NOT to be abused. Any abuse of this system will be met with a permanent ban. For more information, see \"/voteban\".").formatted(Formatting.RED), MessageType.SYSTEM);
-                source.getServer().getPlayerManager().broadcast(Text.literal("To vote, use \"/voteban vote"+votedOut.getEntityName()+"\". This vote will last for ~30 seconds.").formatted(Formatting.YELLOW), MessageType.SYSTEM);
+                source.getServer().getPlayerManager().broadcast(Text.literal("To vote, use \"/voteban vote "+votedOut.getEntityName()+"\". This vote will last for ~30 seconds.").formatted(Formatting.YELLOW), MessageType.SYSTEM);
                 votes.add(votingPlayerUuid);
                 addresses.add(source.getPlayer().getIp());
                 voteBanInstances.remove(VBI);
@@ -120,6 +121,12 @@ public class VoteBanCommand {
                     return 0;
                 }
             }
+
+            if (reason == null) {
+                source.sendFeedback(SystemName.copy().append(Text.literal(" Error! You must provide a reason!").formatted(Formatting.RED)), false);
+                return 0;
+            }
+
             voteBanInstances.add(new VoteBanInstance(votingPlayerUuid, votedOut.getUuid(),reason));
             source.sendFeedback(SystemName, false);
             source.sendFeedback(Text.literal("The VoteBan system is a tool to remove players that are breaking the rules until an Administrator can intervene.").formatted(Formatting.YELLOW), false);
@@ -140,7 +147,7 @@ public class VoteBanCommand {
             addresses.add(source.getPlayer().getIp());
             votes.add(votingPlayerUuid);
             int votesRequired = getVotesNeeded(source.getServer());
-            source.getServer().getPlayerManager().broadcast(SystemName.copy().append(Text.literal(source.getPlayer().getEntityName()+" voted.").formatted(Formatting.RED)),MessageType.SYSTEM);
+            source.getServer().getPlayerManager().broadcast(SystemName.copy().append(Text.literal(" "+source.getPlayer().getEntityName()+" voted.").formatted(Formatting.RED)),MessageType.SYSTEM);
             source.getServer().getPlayerManager().broadcast(SystemName.copy().append(Text.literal(" ("+votes.size()+"/"+votesRequired+") votes received.").formatted(Formatting.GOLD)),MessageType.SYSTEM);
             if (votes.size() >= votesRequired) {
                 BannedPlayerEntry newBan = new BannedPlayerEntry(new GameProfile(currentBanTargetUuid, null),null, "VoteBan System", new Date(System.currentTimeMillis()+86400000),BAN_REASON);
