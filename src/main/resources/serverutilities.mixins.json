@@ -35,8 +35,13 @@
     "shadowfix.entity.ItemEntityMixin",
     "shadowfix.entity.ServerEntityManagerMixin",
     "shadowfix.entity.StorageMinecartEntityMixin",
-
     "shadowfix.entity.EntityMixin",
+
+    "shadowfix.screenhandler.AnvilScreenHandlerMixin",
+    "shadowfix.screenhandler.GrindstoneScreenHandlerMixin",
+
+    "shadowfix.AbstractFurnaceBlockEntityMixin",
+
 
     "ServerPlayNetworkHandlerMixin",
     "RateLimitedConnectionMixin",

@@ -49,3 +49,5 @@
 - fix with /voteban vote always requiring reason
 - lectern crash patch
 - move network tick out of main server loop
+- fix item shadow dupe patches causing passengers to not be saved
+- itemshadowfixes fully active
