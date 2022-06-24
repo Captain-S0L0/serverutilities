@@ -40,7 +40,8 @@ public class ShulkerBoxBlockMixin extends BlockWithEntity {
             ShulkerBoxBlockEntity shulkerBoxBlockEntity = (ShulkerBoxBlockEntity)blockEntity;
             builder = builder.putDrop(ShulkerBoxBlock.CONTENTS, (context, consumer) -> {
                 for(int i = 0; i < shulkerBoxBlockEntity.size(); ++i) {
-                    consumer.accept(shulkerBoxBlockEntity.getStack(i));
+                    ItemStack copy = shulkerBoxBlockEntity.getStack(i).copy();
+                    consumer.accept(copy);
                     shulkerBoxBlockEntity.getStack(i).setCount(0);
                 }
 
@@ -48,6 +49,7 @@ public class ShulkerBoxBlockMixin extends BlockWithEntity {
         }
 
         cir.setReturnValue(super.getDroppedStacks(state, builder));
+        if (cir.isCancellable()) {cir.cancel();}
     }
 
     @Nullable

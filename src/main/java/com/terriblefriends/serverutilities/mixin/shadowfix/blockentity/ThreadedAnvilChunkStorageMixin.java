@@ -190,7 +190,6 @@ public abstract class ThreadedAnvilChunkStorageMixin {
                         BlockEntity blockEntity = chunk.getBlockEntity(blockPos);
                         NbtCompound nbtCompound2;
                         if (blockEntity != null && !blockEntity.isRemoved()) {
-                            System.out.println(blockEntity);
                             nbtCompound2 = ((BlockEntityAccessor)blockEntity).createNbtWithIdentifyingDataDestroyShadows();
                             nbtCompound2.putBoolean("keepPacked", false);
                         } else {

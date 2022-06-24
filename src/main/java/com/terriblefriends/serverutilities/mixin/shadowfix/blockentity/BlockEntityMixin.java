@@ -50,7 +50,6 @@ public class BlockEntityMixin implements BlockEntityAccessor {
         }
 
         if (inventoryToClear.size() != 0) {
-            System.out.println(inventoryToClear.size());
             NbtList nbtList = new NbtList();
             for(int i = 0; i < inventoryToClear.size(); ++i) {
                 ItemStack itemStack = inventoryToClear.get(i);
