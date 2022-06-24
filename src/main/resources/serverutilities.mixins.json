@@ -42,7 +42,6 @@
 
     "shadowfix.AbstractFurnaceBlockEntityMixin",
 
-
     "ServerPlayNetworkHandlerMixin",
     "RateLimitedConnectionMixin",
     "PlayerManagerMixin",

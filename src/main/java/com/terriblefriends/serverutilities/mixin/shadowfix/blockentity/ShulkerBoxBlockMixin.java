@@ -30,7 +30,6 @@ public class ShulkerBoxBlockMixin extends BlockWithEntity {
 
     @Redirect(at=@At(value="INVOKE",target="Lnet/minecraft/block/entity/BlockEntity;setStackNbt(Lnet/minecraft/item/ItemStack;)V"),method="onBreak")
     public void setStackNbtDestroyShadows(BlockEntity instance, ItemStack stack) {
-        System.out.println("nerd2");
         BlockItem.setBlockEntityNbt(stack, instance.getType(), ((BlockEntityAccessor)instance).createNbtShulkerDestroyShadows());
     }
 

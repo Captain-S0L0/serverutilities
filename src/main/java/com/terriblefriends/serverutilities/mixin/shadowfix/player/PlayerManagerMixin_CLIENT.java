@@ -48,9 +48,16 @@ public class PlayerManagerMixin_CLIENT {
             ((IntegratedPlayerManager)PM_instance).userData = playerData;
             ((WorldSaveHandlerAccessor)saveHandler).savePlayerDataFromNbt(player, playerData);
         }
-        else {
-            saveHandler.savePlayerData(player);
+        ServerStatHandler serverStatHandler = this.statisticsMap.get(player.getUuid());
+        if (serverStatHandler != null) {
+            serverStatHandler.save();
         }
+
+        PlayerAdvancementTracker playerAdvancementTracker = this.advancementTrackers.get(player.getUuid());
+        if (playerAdvancementTracker != null) {
+            playerAdvancementTracker.save();
+        }
+        saveHandler.savePlayerData(player);
         if (player.hasVehicle()) {
             Entity entity = player.getRootVehicle();
             if (entity.hasPlayerRider()) {

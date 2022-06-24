@@ -51,3 +51,7 @@
 - move network tick out of main server loop
 - fix item shadow dupe patches causing passengers to not be saved
 - itemshadowfixes fully active
+- added /whereis
+- added /tempban
+0.1.4
+- fixing more issues with itemshadowfixes not cleaning block entities properly

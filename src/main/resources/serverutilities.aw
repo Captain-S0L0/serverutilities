@@ -13,6 +13,9 @@ accessible field net/minecraft/block/entity/ShulkerBoxBlockEntity inventory Lnet
 accessible field net/minecraft/block/entity/BarrelBlockEntity inventory Lnet/minecraft/util/collection/DefaultedList;
 accessible field net/minecraft/block/entity/BrewingStandBlockEntity inventory Lnet/minecraft/util/collection/DefaultedList;
 
+accessible field net/minecraft/world/chunk/WorldChunk loadedToWorld Z
+accessible method net/minecraft/server/world/ServerLightingProvider updateChunkStatus (Lnet/minecraft/util/math/ChunkPos;)V
+
 accessible method net/minecraft/server/MinecraftServer setFavicon (Lnet/minecraft/server/ServerMetadata;)V
 accessible field net/minecraft/world/chunk/Chunk blockEntityNbts Ljava/util/Map;
 accessible class net/minecraft/server/world/ServerEntityManager$Listener

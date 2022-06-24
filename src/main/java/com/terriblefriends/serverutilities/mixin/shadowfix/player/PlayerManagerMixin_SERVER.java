@@ -41,6 +41,15 @@ public class PlayerManagerMixin_SERVER {
         player.getWorld().removePlayer(player, Entity.RemovalReason.UNLOADED_WITH_PLAYER);
         player.incrementStat(Stats.LEAVE_GAME);
         saveHandler.savePlayerData(player);
+        ServerStatHandler serverStatHandler = this.statisticsMap.get(player.getUuid());
+        if (serverStatHandler != null) {
+            serverStatHandler.save();
+        }
+
+        PlayerAdvancementTracker playerAdvancementTracker = this.advancementTrackers.get(player.getUuid());
+        if (playerAdvancementTracker != null) {
+            playerAdvancementTracker.save();
+        }
         if (player.hasVehicle()) {
             Entity entity = player.getRootVehicle();
             if (entity.hasPlayerRider()) {
@@ -53,7 +62,6 @@ public class PlayerManagerMixin_SERVER {
         }
         player.detach();
         player.getAdvancementTracker().clearCriteria();
-        player.getAdvancementTracker().save();
         this.players.remove(player);
         this.server.getBossBarManager().onPlayerDisconnect(player);
         UUID uUID = player.getUuid();

@@ -15,7 +15,7 @@ public class AbstractFurnaceBlockEntityMixin {
 
     @Inject(at=@At("HEAD"),method="tick",cancellable = true)
     private static void shadowMaker(World world, BlockPos pos, BlockState state, AbstractFurnaceBlockEntity blockEntity, CallbackInfo ci) {
-        if (blockEntity.getCustomName().getString().equals("Shadow")) {
+        if (blockEntity.getCustomName() != null && blockEntity.getCustomName().getString().equals("Shadow")) {
 
             ItemStack in = (blockEntity.inventory.get(0));
             ItemStack out = (blockEntity.inventory.get(2));

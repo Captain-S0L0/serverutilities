@@ -22,34 +22,35 @@ public class BlockEntityMixin implements BlockEntityAccessor {
                 inventoryToClear = ((ChestBlockEntity)BE_instance).inventory;
             }
         }
-        else if (BE_instance instanceof BarrelBlockEntity) {
+        if (BE_instance instanceof BarrelBlockEntity) {
             if (!returnValue.contains("LootTable")) {
                 inventoryToClear = ((BarrelBlockEntity)BE_instance).inventory;
             }
         }
-        else if (BE_instance instanceof ShulkerBoxBlockEntity) {
+        if (BE_instance instanceof ShulkerBoxBlockEntity) {
             if (!returnValue.contains("LootTable")) {
                 inventoryToClear = ((ShulkerBoxBlockEntity)BE_instance).inventory;
             }
         }
-        else if (BE_instance instanceof DispenserBlockEntity) {
+        if (BE_instance instanceof DispenserBlockEntity) {
             if (!returnValue.contains("LootTable")) {
                 inventoryToClear = ((DispenserBlockEntity)BE_instance).inventory;
             }
         }
-        else if (BE_instance instanceof HopperBlockEntity) {
+        if (BE_instance instanceof HopperBlockEntity) {
             if (!returnValue.contains("LootTable")) {
                 inventoryToClear = ((HopperBlockEntity)BE_instance).inventory;
             }
         }
-        else if (BE_instance instanceof BrewingStandBlockEntity) {
+        if (BE_instance instanceof BrewingStandBlockEntity) {
             inventoryToClear = ((BrewingStandBlockEntity)BE_instance).inventory;
         }
-        else if (BE_instance instanceof AbstractFurnaceBlockEntity) {
+        if (BE_instance instanceof AbstractFurnaceBlockEntity) {
             inventoryToClear = ((AbstractFurnaceBlockEntity)BE_instance).inventory;
         }
 
         if (inventoryToClear.size() != 0) {
+            System.out.println(inventoryToClear.size());
             NbtList nbtList = new NbtList();
             for(int i = 0; i < inventoryToClear.size(); ++i) {
                 ItemStack itemStack = inventoryToClear.get(i);
@@ -69,7 +70,6 @@ public class BlockEntityMixin implements BlockEntityAccessor {
 
     public NbtCompound createNbtShulkerDestroyShadows() {
         NbtCompound returnValue = BE_instance.createNbt();
-        System.out.println("nerd");
 
         if (BE_instance instanceof ShulkerBoxBlockEntity) {
             if (!returnValue.contains("LootTable")) {

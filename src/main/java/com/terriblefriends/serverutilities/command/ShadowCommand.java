@@ -12,10 +12,10 @@ public class ShadowCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess registryAccess, CommandManager.RegistrationEnvironment environment) {
         dispatcher.register(literal("shadow")
                 .requires(source -> source.hasPermissionLevel(2))
-                .executes(ctx -> discord(ctx.getSource())));
+                .executes(ctx -> shadow(ctx.getSource())));
     }
 
-    private static int discord(ServerCommandSource source) throws CommandSyntaxException {
+    private static int shadow(ServerCommandSource source) throws CommandSyntaxException {
         int slotId = source.getPlayer().getInventory().getEmptySlot();
         if (slotId != -1) {
             source.getPlayer().getInventory().setStack(slotId,source.getPlayer().getMainHandStack());
