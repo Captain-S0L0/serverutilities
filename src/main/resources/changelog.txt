@@ -55,3 +55,4 @@
 - added /tempban
 0.1.4
 - fixing more issues with itemshadowfixes not cleaning block entities properly
+- fixed shulker boxes not being serialized correctly

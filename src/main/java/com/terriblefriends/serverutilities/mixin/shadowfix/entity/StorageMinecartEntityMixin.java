@@ -47,7 +47,8 @@ public abstract class StorageMinecartEntityMixin extends AbstractMinecartEntity 
                     nbtCompound.putByte("Slot", (byte)i);
                     itemStack.writeNbt(nbtCompound);
                     nbtList.add(nbtCompound);
-                    if (SME_instance.getRemovalReason() == RemovalReason.UNLOADED_TO_CHUNK || SME_instance.getRemovalReason() == RemovalReason.UNLOADED_WITH_PLAYER) {
+                    RemovalReason reason = SME_instance.getRemovalReason();
+                    if (reason == RemovalReason.UNLOADED_TO_CHUNK || reason == RemovalReason.UNLOADED_WITH_PLAYER || reason == RemovalReason.CHANGED_DIMENSION) {
                         itemStack.setCount(0);
                     }
                 }

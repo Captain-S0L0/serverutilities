@@ -182,6 +182,8 @@ public abstract class ThreadedAnvilChunkStorageMixin {
                 this.world.getProfiler().visit("chunkSave");
                 NbtCompound nbtCompound = ChunkSerializer.serialize(this.world, chunk);
 
+                int blockEntityDebugCount = nbtCompound.getList("block_entities",10).size();
+
                 NbtList nbtList2 = new NbtList();
 
                 for (BlockPos blockPos : chunk.getBlockEntityPositions()) {
@@ -189,7 +191,7 @@ public abstract class ThreadedAnvilChunkStorageMixin {
                     if (chunk instanceof WorldChunk) {
                         BlockEntity blockEntity = chunk.getBlockEntity(blockPos);
                         NbtCompound nbtCompound2;
-                        if (blockEntity != null && !blockEntity.isRemoved()) {
+                        if (blockEntity != null) {
                             nbtCompound2 = ((BlockEntityAccessor)blockEntity).createNbtWithIdentifyingDataDestroyShadows();
                             nbtCompound2.putBoolean("keepPacked", false);
                         } else {
@@ -208,7 +210,6 @@ public abstract class ThreadedAnvilChunkStorageMixin {
                         BlockEntity blockEntity = chunk.getBlockEntity(blockPos);
                         NbtCompound nbtCompound2;
                         if (blockEntity != null) {
-                            System.out.println(blockEntity);
                             nbtCompound2 = ((BlockEntityAccessor)blockEntity).createNbtWithIdentifyingDataDestroyShadows();
                         } else {
                             nbtCompound2 = chunk.blockEntityNbts.get(blockPos);
@@ -218,6 +219,10 @@ public abstract class ThreadedAnvilChunkStorageMixin {
                         }
                     }
 
+                }
+
+                if (nbtList2.size() != blockEntityDebugCount) {
+                    LOGGER.error("Failed to save all block entities in chunk {},{}", new Object[]{chunkPos.x, chunkPos.z});
                 }
 
                 nbtCompound.put("block_entities", nbtList2);

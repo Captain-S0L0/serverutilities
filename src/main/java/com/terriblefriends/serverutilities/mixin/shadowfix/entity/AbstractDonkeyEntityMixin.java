@@ -35,7 +35,8 @@ public class AbstractDonkeyEntityMixin extends AbstractHorseEntity {
                     nbtCompound.putByte("Slot", (byte)i);
                     itemStack.writeNbt(nbtCompound);
                     nbtList.add(nbtCompound);
-                    if (ADE_instance.getRemovalReason() == Entity.RemovalReason.UNLOADED_TO_CHUNK || ADE_instance.getRemovalReason() == Entity.RemovalReason.UNLOADED_WITH_PLAYER) {
+                    RemovalReason reason = ADE_instance.getRemovalReason();
+                    if (reason == RemovalReason.UNLOADED_TO_CHUNK || reason == RemovalReason.UNLOADED_WITH_PLAYER || reason == RemovalReason.CHANGED_DIMENSION) {
                         itemStack.setCount(0);
                     }
                 }

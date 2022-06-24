@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Entity.class)
@@ -30,5 +31,11 @@ public class EntityMixin{
         changeListener.remove(reason);
 
         if (ci.isCancellable()) {ci.cancel();}
+    }
+
+    @Redirect(at=@At(value="INVOKE",target="Lnet/minecraft/entity/Entity;copyFrom(Lnet/minecraft/entity/Entity;)V"),method="moveToWorld")
+    private void changeDimensionClearShadows(Entity instance, Entity original) {
+        E_instance.setRemoved(Entity.RemovalReason.CHANGED_DIMENSION);
+        instance.copyFrom(original);
     }
 }
