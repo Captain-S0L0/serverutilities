@@ -27,8 +27,8 @@ public class ServerUtilities implements ModInitializer {
     public static final GameRules.Key<GameRules.IntRule> THROWABLE_FIREBALL_POWER =
             GameRuleRegistry.register("throwableFireballPower", GameRules.Category.MISC,GameRuleFactory.createIntRule(1));
     public static final GameRules.Key<GameRules.IntRule> ACTION_RATE_LIMIT =
-            GameRuleRegistry.register("actionRateLimit", GameRules.Category.MISC,GameRuleFactory.createIntRule(20));
-    public static int actionRateLimit = 20;
+            GameRuleRegistry.register("actionRateLimit", GameRules.Category.MISC,GameRuleFactory.createIntRule(40));
+    public static int actionRateLimit = 40;
     public static ServerWorld overworld;
 
 
@@ -47,6 +47,8 @@ public class ServerUtilities implements ModInitializer {
         CommandRegistrationCallback.EVENT.register(VoteCommand::register); //vote
         CommandRegistrationCallback.EVENT.register(ShadowCommand::register); //shadow
         CommandRegistrationCallback.EVENT.register(VoteBanCommand::register); //voteban
+        CommandRegistrationCallback.EVENT.register(TempBanCommand::register); //tempban
+        CommandRegistrationCallback.EVENT.register(WhereIsCommand::register); //whereis
         ServerLifecycleEvents.SERVER_STARTED.register(serverArg -> {
             overworld = serverArg.getOverworld();
             server = serverArg;
