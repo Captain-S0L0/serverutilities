@@ -1,4 +1,4 @@
-package com.terriblefriends.serverutilities.mixin.shadowfix;
+package com.terriblefriends.serverutilities.mixin.shadowfix.block;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.AbstractFurnaceBlockEntity;

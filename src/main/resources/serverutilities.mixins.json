@@ -40,7 +40,8 @@
     "shadowfix.screenhandler.AnvilScreenHandlerMixin",
     "shadowfix.screenhandler.GrindstoneScreenHandlerMixin",
 
-    "shadowfix.AbstractFurnaceBlockEntityMixin",
+    "shadowfix.block.DropperBlockMixin",
+    "shadowfix.block.AbstractFurnaceBlockEntityMixin",
 
     "ServerPlayNetworkHandlerMixin",
     "RateLimitedConnectionMixin",
