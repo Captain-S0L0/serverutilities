@@ -58,4 +58,6 @@
 - fixed shulker boxes not being serialized correctly
 - fixed block entities not being saved correctly
 - implemented check for entities going through nether portals for shadow items (NOT PLAYERS)
+- added item entities to item shadow check on nbt write
+- patched dispensers inserting items into inventories disconnecting the instance
 

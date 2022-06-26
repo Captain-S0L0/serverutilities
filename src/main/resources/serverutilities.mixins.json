@@ -15,6 +15,7 @@
     "dupefix.ScreenHandlerMixin",
     "dupefix.VillagerEntityMixin",
     "dupefix.WanderingTraderEntityMixin",
+    "dupefix.GiveInventoryToLookTargetTaskMixin",
 
     "command.NoEndMixin",
     "command.ServerWorldMixin",
@@ -23,6 +24,9 @@
     "command.AbstractMinecartEntityMixin",
     "command.FireChargeItemMixin",
 
+    "misc.BeeEntityMixin",
+    "misc.LecternScreenHandlerMixin",
+
     "shadowfix.player.WorldSaveHandlerMixin",
     "shadowfix.player.PlayerInventoryMixin",
     "shadowfix.player.PlayerEntityMixin",
@@ -30,6 +34,8 @@
     "shadowfix.blockentity.BlockEntityMixin",
     "shadowfix.blockentity.ShulkerBoxBlockMixin",
     "shadowfix.blockentity.ThreadedAnvilChunkStorageMixin",
+
+    "shadowfix.blockentity.ChunkSerializerMixin",
 
     "shadowfix.entity.AbstractDonkeyEntityMixin",
     "shadowfix.entity.ItemEntityMixin",
@@ -45,10 +51,7 @@
 
     "ServerPlayNetworkHandlerMixin",
     "RateLimitedConnectionMixin",
-    "PlayerManagerMixin",
-    "misc.BeeEntityMixin",
-    "misc.GiveInventoryToLookTargetTaskMixin",
-    "misc.LecternScreenHandlerMixin"
+    "PlayerManagerMixin"
   ],
   "client": [
     "shadowfix.player.PlayerManagerMixin_CLIENT"
