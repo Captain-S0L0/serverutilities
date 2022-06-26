@@ -35,8 +35,6 @@
     "shadowfix.blockentity.ShulkerBoxBlockMixin",
     "shadowfix.blockentity.ThreadedAnvilChunkStorageMixin",
 
-    "shadowfix.blockentity.ChunkSerializerMixin",
-
     "shadowfix.entity.AbstractDonkeyEntityMixin",
     "shadowfix.entity.ItemEntityMixin",
     "shadowfix.entity.ServerEntityManagerMixin",
@@ -45,6 +43,24 @@
 
     "shadowfix.screenhandler.AnvilScreenHandlerMixin",
     "shadowfix.screenhandler.GrindstoneScreenHandlerMixin",
+
+    "shadowfix.screenhandler.transferfix.AbstractFurnaceScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.BeaconScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.BrewingStandScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.CartographyTableScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.CraftingScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.CreativeScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.EnchantmentScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.ForgingScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.Generic3x3ContainerScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.GenericContainerScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.HopperScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.HorseScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.LoomScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.MerchantScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.PlayerScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.ShulkerBoxScreenHandlerMixin",
+    "shadowfix.screenhandler.transferfix.StoneCutterScreenHandlerMixin",
 
     "shadowfix.block.DropperBlockMixin",
     "shadowfix.block.AbstractFurnaceBlockEntityMixin",

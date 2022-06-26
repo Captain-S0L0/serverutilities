@@ -60,4 +60,8 @@
 - implemented check for entities going through nether portals for shadow items (NOT PLAYERS)
 - added item entities to item shadow check on nbt write
 - patched dispensers inserting items into inventories disconnecting the instance
+0.1.5
+- FINALLY FIXED THE TILE ENTITY SAVING BUG
+- Patch for transferSlot duplicating shadows
+- TODO: Fix allay patch as it fucking breaks allays
 

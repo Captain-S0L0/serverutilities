@@ -32,8 +32,6 @@ public class GrindstoneScreenHandlerMixin extends ScreenHandler {
     @Shadow @Final Inventory input;
     @Shadow @Final private ScreenHandlerContext context;
 
-    GrindstoneScreenHandler GSH_instance = (GrindstoneScreenHandler) (Object) this;
-
     protected GrindstoneScreenHandlerMixin(@Nullable ScreenHandlerType<?> type, int syncId) {
         super(type, syncId);
     }
@@ -79,8 +77,8 @@ public class GrindstoneScreenHandlerMixin extends ScreenHandler {
 
                     while(var4.hasNext()) {
                         Map.Entry<Enchantment, Integer> entry = (Map.Entry)var4.next();
-                        Enchantment enchantment = (Enchantment)entry.getKey();
-                        Integer integer = (Integer)entry.getValue();
+                        Enchantment enchantment = entry.getKey();
+                        Integer integer = entry.getValue();
                         if (!enchantment.isCursed()) {
                             i += enchantment.getMinPower(integer);
                         }
@@ -98,7 +96,10 @@ public class GrindstoneScreenHandlerMixin extends ScreenHandler {
 
     public ItemStack transferSlot(PlayerEntity player, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
-        Slot slot = (Slot)this.slots.get(index);
+        Slot slot = this.slots.get(index);
+        ItemStack originalStack = slot.getStack();
+        slot.setStack(originalStack.copy());
+        originalStack.setCount(0);
         if (slot != null && slot.hasStack()) {
             ItemStack itemStack2 = slot.getStack();
             itemStack = itemStack2.copy();
@@ -145,12 +146,4 @@ public class GrindstoneScreenHandlerMixin extends ScreenHandler {
     public boolean canUse(PlayerEntity player) {
         return canUse(this.context, player, Blocks.GRINDSTONE);
     }
-
-
-    /*@Inject(at=@At("HEAD"),method="Lnet/minecraft/screen/GrindstoneScreenHandler$4;onTakeItem(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/item/ItemStack;)V")
-    private void test() {
-
-    Lnet/minecraft/screen/GrindstoneScreenHandler$4;onTakeItem(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/item/ItemStack;)V
-
-    }*/
 }

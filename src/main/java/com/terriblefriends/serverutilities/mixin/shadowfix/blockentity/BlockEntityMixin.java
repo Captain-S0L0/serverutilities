@@ -13,7 +13,6 @@ public class BlockEntityMixin implements BlockEntityAccessor {
     BlockEntity BE_instance = (BlockEntity) (Object) this;
 
     public void createNbtWithIdentifyingDataDestroyShadows() {
-        //NbtCompound returnValue = BE_instance.createNbtWithIdentifyingData();
         NbtCompound returnValue = BE_instance.createNbt();
 
         DefaultedList<ItemStack> inventoryToClear = DefaultedList.ofSize(0, ItemStack.EMPTY);
