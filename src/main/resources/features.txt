@@ -6,16 +6,18 @@ Anti-dupes / exploits:
 - prevents general packet nasties with a player action packet rate limit (hardcoded)
 
 Commands:
-- /fly <player> : toggles allowFlying
-- /flyspeed <float> <player> : sets flySpeed, default is 0.05
-- /godmode <player> : toggles invulnerable
-- /getweather : prints debug about the weather in a world
-- /setweathertime <rain/thunder/clear> <ticks> : sets the selected weather timer
-- /opwp <power> : op a player with a custom operator level
-- /setscoreboard <scoreboard> : sets the sidebar display to the selected scoreboard
-- /suicide : kills the command's executor
 - /discord: prints the Terrible Friends discord link. hardcoded.
 - /dynmaplink: prints the Terrible Friends dynmap link. hardcoded.
+- /fly <player> : toggles allowFlying
+- /flyspeed <float> <player> : sets flySpeed, default is 0.05
+- /getweather : prints debug about the weather in a world
+- /god <player> : toggles invulnerability
+- /setscoreboard <scoreboard> : sets the sidebar display to the selected scoreboard
+- /shadow
+- /setweathertime <rain/thunder/clear> <ticks> : sets the selected weather timer
+- /opwp <power> : op a player with a custom operator level
+- /suicide : kills the command's executor
+
 
 Adventure Mode Modifiers:
 - Defaults with invulnerable:1b

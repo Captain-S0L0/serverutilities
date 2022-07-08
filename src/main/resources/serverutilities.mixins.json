@@ -18,14 +18,18 @@
     "dupefix.GiveInventoryToLookTargetTaskMixin",
 
     "command.NoEndMixin",
+    "command.MessageCommandMixin",
     "command.ServerWorldMixin",
     "command.SetPlayerAbilitiesMixin",
     "command.HorseBaseEntityMixin",
     "command.AbstractMinecartEntityMixin",
     "command.FireChargeItemMixin",
+    "command.PhantomEntityMixin",
 
-    "misc.BeeEntityMixin",
     "misc.LecternScreenHandlerMixin",
+    "misc.BeehiveBlockEntityMixin",
+    "misc.SpawnEggItemMixin",
+    "misc.EntityExplosionBehaviorMixin",
 
     "shadowfix.player.WorldSaveHandlerMixin",
     "shadowfix.player.PlayerInventoryMixin",
@@ -34,6 +38,7 @@
     "shadowfix.blockentity.BlockEntityMixin",
     "shadowfix.blockentity.ShulkerBoxBlockMixin",
     "shadowfix.blockentity.ThreadedAnvilChunkStorageMixin",
+    "shadowfix.blockentity.ThreadedAnvilChunkStorageAccess",
 
     "shadowfix.entity.AbstractDonkeyEntityMixin",
     "shadowfix.entity.ItemEntityMixin",
@@ -49,7 +54,6 @@
     "shadowfix.screenhandler.transferfix.BrewingStandScreenHandlerMixin",
     "shadowfix.screenhandler.transferfix.CartographyTableScreenHandlerMixin",
     "shadowfix.screenhandler.transferfix.CraftingScreenHandlerMixin",
-    "shadowfix.screenhandler.transferfix.CreativeScreenHandlerMixin",
     "shadowfix.screenhandler.transferfix.EnchantmentScreenHandlerMixin",
     "shadowfix.screenhandler.transferfix.ForgingScreenHandlerMixin",
     "shadowfix.screenhandler.transferfix.Generic3x3ContainerScreenHandlerMixin",
@@ -64,9 +68,12 @@
 
     "shadowfix.block.DropperBlockMixin",
     "shadowfix.block.AbstractFurnaceBlockEntityMixin",
+    "shadowfix.block.BlocksMixin",
+    "shadowfix.block.SpawnerBlockMixin",
+    "shadowfix.block.SetTickingInterface",
+    "shadowfix.block.MobSpawnerLogicAccess",
 
     "ServerPlayNetworkHandlerMixin",
-    "RateLimitedConnectionMixin",
     "PlayerManagerMixin"
   ],
   "client": [

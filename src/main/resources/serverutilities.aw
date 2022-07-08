@@ -15,7 +15,9 @@ accessible field net/minecraft/block/entity/BrewingStandBlockEntity inventory Ln
 
 accessible field net/minecraft/world/chunk/WorldChunk loadedToWorld Z
 accessible method net/minecraft/server/world/ServerLightingProvider updateChunkStatus (Lnet/minecraft/util/math/ChunkPos;)V
+accessible class net/minecraft/entity/mob/PhantomEntity$StartAttackGoal
 
 accessible method net/minecraft/server/MinecraftServer setFavicon (Lnet/minecraft/server/ServerMetadata;)V
 accessible field net/minecraft/world/chunk/Chunk blockEntityNbts Ljava/util/Map;
 accessible class net/minecraft/server/world/ServerEntityManager$Listener
+accessible method net/minecraft/util/registry/SimpleRegistry set (ILnet/minecraft/util/registry/RegistryKey;Ljava/lang/Object;Lcom/mojang/serialization/Lifecycle;Z)Lnet/minecraft/util/registry/RegistryEntry;

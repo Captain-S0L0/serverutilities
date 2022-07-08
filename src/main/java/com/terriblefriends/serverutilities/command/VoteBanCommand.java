@@ -194,7 +194,6 @@ public class VoteBanCommand {
     }
 
     private static int getVotesNeeded(MinecraftServer server) {
-
-        return Math.max(((int) (server.getPlayerManager().getPlayerList().size() * .6)), 3);
+        return Math.max(((int)( server.getPlayerManager().getPlayerList().size() * (server.getOverworld().getGameRules().getInt(ServerUtilities.VOTEBAN_PERCENTAGE)*.01) )), 3);
     }
 }

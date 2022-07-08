@@ -6,6 +6,7 @@ import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
@@ -29,10 +30,15 @@ public class ArmorItemMixin {
         if (list.isEmpty()) {
             cir.setReturnValue(false);
         } else {
+            System.out.println("entity reached");
             LivingEntity livingEntity = list.get(0);
             EquipmentSlot equipmentSlot = MobEntity.getPreferredEquipmentSlot(armor);
-            if (!(livingEntity instanceof ServerPlayerEntity)) {
-                if (!pointer.getWorld().getGameRules().getBoolean(ServerUtilities.ADVENTURE_GHOST_MODE) || !((ServerPlayerEntityAccess)livingEntity).isAdventure()){
+            System.out.println(livingEntity instanceof PlayerEntity);
+            System.out.println(livingEntity instanceof ServerPlayerEntity);
+            if (livingEntity instanceof ServerPlayerEntity) {
+                System.out.println("player entity");
+                System.out.println(!pointer.getWorld().getGameRules().getBoolean(ServerUtilities.ADVENTURE_GHOST_MODE) || !((ServerPlayerEntityAccess)((ServerPlayerEntity)livingEntity)).isAdventure());
+                if (!pointer.getWorld().getGameRules().getBoolean(ServerUtilities.ADVENTURE_GHOST_MODE) || !((ServerPlayerEntityAccess)((ServerPlayerEntity)livingEntity)).isAdventure()){
                     ItemStack itemStack = armor.split(1);
                     livingEntity.equipStack(equipmentSlot, itemStack);
                 }

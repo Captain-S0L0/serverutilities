@@ -1,16 +1,8 @@
-package com.terriblefriends.serverutilities.mixin;
+/*package com.terriblefriends.serverutilities.mixin;
 
 import com.terriblefriends.serverutilities.ServerUtilities;
-import com.terriblefriends.serverutilities.access.ClientConnectionAccess;
 import com.terriblefriends.serverutilities.access.RateLimitedConnectionAccess;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.network.*;
-import net.minecraft.network.listener.PacketListener;
-import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
-import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
-import net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket;
-import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.network.packet.s2c.play.DisconnectS2CPacket;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
@@ -65,4 +57,4 @@ public class RateLimitedConnectionMixin extends ClientConnection implements Rate
         }
         if (ci.isCancellable()) {ci.cancel();}
     }
-}
+}*/

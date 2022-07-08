@@ -1,5 +1,4 @@
 - prevent portal generation in spawn protection (probably force a return of the spawn portal)
-- prevent explosions in spawn
 - general anticheat, at least antifly
 - allow reversion of horse speed nerfs due to changing horseSpeedMultiplier
 - allow playeraction rate limit to be configured in server.properties

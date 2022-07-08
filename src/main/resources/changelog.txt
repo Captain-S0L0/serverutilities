@@ -63,5 +63,16 @@
 0.1.5
 - FINALLY FIXED THE TILE ENTITY SAVING BUG
 - Patch for transferSlot duplicating shadows
-- TODO: Fix allay patch as it fucking breaks allays
-
+- actually fixed bees getting stuck in hives in nether / end due to rain boolean
+- lobotomize phantoms
+0.1.6
+- Fixed allays
+- fixed spawner tile fixer
+- added phantom lobotimization as a gamerule
+- added votebanpercentage gamerule
+- fixed explosions in spawn protection
+- patched survival players from using spawn eggs to change spawners
+- cleanup of unused / old code
+- removal of crappy actionratelimit system
+0.2.0
+- cleanup and updating of readme / todos / etc

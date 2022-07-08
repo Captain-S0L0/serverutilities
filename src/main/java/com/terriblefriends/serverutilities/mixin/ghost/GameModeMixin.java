@@ -24,12 +24,12 @@ public abstract class GameModeMixin {
             abilities.creativeMode = false;
             abilities.invulnerable = true;
             abilities.flying = true;
-        } else if (gm == GameMode.ADVENTURE && ServerUtilities.overworld.getGameRules().getBoolean(ServerUtilities.ADVENTURE_GHOST_MODE)) {
+        } else if (gm == GameMode.ADVENTURE && ServerUtilities.server.getOverworld().getGameRules().getBoolean(ServerUtilities.ADVENTURE_GHOST_MODE)) {
             abilities.allowFlying = false;
             abilities.creativeMode = false;
             abilities.invulnerable = true;
             abilities.flying = false;
-        } else if (gm == GameMode.ADVENTURE && !ServerUtilities.overworld.getGameRules().getBoolean(ServerUtilities.ADVENTURE_GHOST_MODE)) {
+        } else if (gm == GameMode.ADVENTURE && !ServerUtilities.server.getOverworld().getGameRules().getBoolean(ServerUtilities.ADVENTURE_GHOST_MODE)) {
             abilities.allowFlying = false;
             abilities.creativeMode = false;
             abilities.invulnerable = false;

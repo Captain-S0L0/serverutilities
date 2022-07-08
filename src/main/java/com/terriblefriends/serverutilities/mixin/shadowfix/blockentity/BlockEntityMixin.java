@@ -22,30 +22,30 @@ public class BlockEntityMixin implements BlockEntityAccessor {
                 inventoryToClear = ((ChestBlockEntity)BE_instance).inventory;
             }
         }
-        if (BE_instance instanceof BarrelBlockEntity) {
+        else if (BE_instance instanceof BarrelBlockEntity) {
             if (!returnValue.contains("LootTable")) {
                 inventoryToClear = ((BarrelBlockEntity)BE_instance).inventory;
             }
         }
-        if (BE_instance instanceof ShulkerBoxBlockEntity) {
+        else if (BE_instance instanceof ShulkerBoxBlockEntity) {
             if (!returnValue.contains("LootTable")) {
                 inventoryToClear = ((ShulkerBoxBlockEntity)BE_instance).inventory;
             }
         }
-        if (BE_instance instanceof DispenserBlockEntity) {
+        else if (BE_instance instanceof DispenserBlockEntity) {
             if (!returnValue.contains("LootTable")) {
                 inventoryToClear = ((DispenserBlockEntity)BE_instance).inventory;
             }
         }
-        if (BE_instance instanceof HopperBlockEntity) {
+        else if (BE_instance instanceof HopperBlockEntity) {
             if (!returnValue.contains("LootTable")) {
                 inventoryToClear = ((HopperBlockEntity)BE_instance).inventory;
             }
         }
-        if (BE_instance instanceof BrewingStandBlockEntity) {
+        else if (BE_instance instanceof BrewingStandBlockEntity) {
             inventoryToClear = ((BrewingStandBlockEntity)BE_instance).inventory;
         }
-        if (BE_instance instanceof AbstractFurnaceBlockEntity) {
+        else if (BE_instance instanceof AbstractFurnaceBlockEntity) {
             inventoryToClear = ((AbstractFurnaceBlockEntity)BE_instance).inventory;
         }
 
