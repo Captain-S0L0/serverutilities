@@ -61,7 +61,9 @@ public class ItemEntityMixin {
             nbt.put("Item", IE_instance.getStack().writeNbt(new NbtCompound()));
             Entity.RemovalReason reason = IE_instance.getRemovalReason();
             if (reason == Entity.RemovalReason.UNLOADED_TO_CHUNK || reason == Entity.RemovalReason.UNLOADED_WITH_PLAYER || reason == Entity.RemovalReason.CHANGED_DIMENSION) {
+                ItemStack copyStack = IE_instance.getStack().copy();
                 IE_instance.getStack().setCount(0);
+                IE_instance.setStack(copyStack);
             }
         }
         if (ci.isCancellable()) {ci.cancel();}

@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 public class BlockEntityMixin implements BlockEntityAccessor {
     BlockEntity BE_instance = (BlockEntity) (Object) this;
 
-    public void createNbtWithIdentifyingDataDestroyShadows() {
+    public void destroyShadows() {
         NbtCompound returnValue = BE_instance.createNbt();
 
         DefaultedList<ItemStack> inventoryToClear = DefaultedList.ofSize(0, ItemStack.EMPTY);
@@ -54,9 +54,8 @@ public class BlockEntityMixin implements BlockEntityAccessor {
             for(int i = 0; i < inventoryToClear.size(); ++i) {
                 ItemStack itemStack = inventoryToClear.get(i);
                 if (!itemStack.isEmpty()) {
-                    ItemStack copyStack = itemStack.copy();
+                    inventoryToClear.set(i,itemStack.copy());
                     itemStack.setCount(0);
-                    inventoryToClear.set(i,copyStack);
                 }
             }
             returnValue.put("Items", nbtList);

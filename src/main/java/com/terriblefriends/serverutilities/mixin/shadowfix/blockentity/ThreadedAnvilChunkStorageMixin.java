@@ -15,7 +15,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Objects;
 import java.util.Queue;
@@ -25,7 +27,6 @@ import java.util.function.Consumer;
 @Mixin(ThreadedAnvilChunkStorage.class)
 public abstract class ThreadedAnvilChunkStorageMixin {
     @Shadow @Final ServerWorld world;
-    @Shadow protected abstract void tryUnloadChunk(long pos, ChunkHolder holder);
     @Shadow @Final @Mutable private Long2ObjectLinkedOpenHashMap<ChunkHolder> chunksToUnload;
     @Shadow @Final @Mutable private LongSet loadedChunks;
     @Shadow @Final @Mutable private Long2LongMap chunkToNextSaveTimeMs;
@@ -35,13 +36,26 @@ public abstract class ThreadedAnvilChunkStorageMixin {
     @Shadow @Final private static Logger LOGGER;
     @Shadow protected abstract boolean save(Chunk chunk);
 
-    @Redirect(at=@At(value="INVOKE",target="Lnet/minecraft/server/world/ThreadedAnvilChunkStorage;tryUnloadChunk(JLnet/minecraft/server/world/ChunkHolder;)V"),method="unloadChunks")
+    @Shadow protected abstract void tryUnloadChunk(long pos, ChunkHolder holder);
+
+    /*@Redirect(at=@At(value="INVOKE",target="Lnet/minecraft/server/world/ThreadedAnvilChunkStorage;tryUnloadChunk(JLnet/minecraft/server/world/ChunkHolder;)V"),method="unloadChunks")
     private void test(ThreadedAnvilChunkStorage instance, long pos, ChunkHolder holder) {
-        CompletableFuture<Chunk> completableFuture = holder.getSavingFuture();
+        Chunk chunk = holder.getCurrentChunk();
+        if (chunk != null) {
+            for (BlockPos blockPos : chunk.getBlockEntityPositions()) {
+                BlockEntity blockEntity = chunk.getBlockEntity(blockPos);
+                if (blockEntity != null) {
+                    ((BlockEntityAccessor) blockEntity).destroyShadows();
+                }
+            }
+        }
+        tryUnloadChunk(pos, holder);
+
+        /*CompletableFuture<Chunk> completableFuture = holder.getSavingFuture();
         Consumer<Chunk> var10001 = (chunk) -> {
             CompletableFuture<Chunk> completableFuture2 = holder.getSavingFuture();
             if (completableFuture2 != completableFuture) {
-                this.tryUnloadChunk(pos, holder);
+                test(instance, pos, holder);
             } else {
                 if (chunksToUnload.remove(pos, holder) && chunk != null) {
                     for (BlockPos blockPos : chunk.getBlockEntityPositions()) {
@@ -63,6 +77,7 @@ public abstract class ThreadedAnvilChunkStorageMixin {
                     this.lightingProvider.updateChunkStatus(chunk.getPos());
                     this.lightingProvider.tick();
                     this.worldGenerationProgressListener.setChunkStatus(chunk.getPos(), null);
+
                     chunkToNextSaveTimeMs.remove(chunk.getPos().toLong());
                 }
             }
@@ -75,6 +90,18 @@ public abstract class ThreadedAnvilChunkStorageMixin {
                 LOGGER.error("Failed to save chunk {}", holder.getPos(), throwable);
             }
 
-        });
+        });*/
+    //}
+
+    @Inject(at=@At("HEAD"),method="save(Lnet/minecraft/world/chunk/Chunk;)Z")
+    private void blockEntityShadowDeletion(Chunk chunk, CallbackInfoReturnable<Boolean> cir) {
+        if (chunk instanceof WorldChunk && !((WorldChunk)chunk).loadedToWorld) {
+            for (BlockPos blockPos : chunk.getBlockEntityPositions()) {
+                BlockEntity blockEntity = chunk.getBlockEntity(blockPos);
+                if (blockEntity != null) {
+                    ((BlockEntityAccessor) blockEntity).destroyShadows();
+                }
+            }
+        }
     }
 }

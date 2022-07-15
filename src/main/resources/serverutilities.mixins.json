@@ -38,7 +38,6 @@
     "shadowfix.blockentity.BlockEntityMixin",
     "shadowfix.blockentity.ShulkerBoxBlockMixin",
     "shadowfix.blockentity.ThreadedAnvilChunkStorageMixin",
-    "shadowfix.blockentity.ThreadedAnvilChunkStorageAccess",
 
     "shadowfix.entity.AbstractDonkeyEntityMixin",
     "shadowfix.entity.ItemEntityMixin",

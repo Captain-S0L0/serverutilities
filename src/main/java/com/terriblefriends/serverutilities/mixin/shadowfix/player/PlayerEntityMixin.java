@@ -26,7 +26,8 @@ public class PlayerEntityMixin {
                     nbtCompound.putByte("Slot", (byte)i);
                     itemStack.writeNbt(nbtCompound);
                     nbtList.add(nbtCompound);
-                    instance.getStack(i).setCount(0);
+                    instance.setStack(i,itemStack.copy());
+                    itemStack.setCount(0);
                 }
             }
             return nbtList;

@@ -11,7 +11,9 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.MobSpawnerLogic;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(SpawnerBlock.class)
@@ -41,11 +43,11 @@ public class SpawnerBlockMixin extends Block {
                     }
                 }
                 if (!isCaveSpider) {
-                    ((MobSpawnerBlockEntity) blockEntity).getLogic().setEntityId(Util.getRandom(new EntityType[]{EntityType.SKELETON, EntityType.ZOMBIE, EntityType.ZOMBIE, EntityType.SPIDER}, random));
+                    setSpawnerMob(blockEntity, pos, world, Util.getRandom(new EntityType[]{EntityType.SKELETON, EntityType.ZOMBIE, EntityType.ZOMBIE, EntityType.SPIDER}, random));
                     logChanges("[TileFixer] randomized overworld dungeon! "+pos.toShortString()+" in "+world.getRegistryKey().getValue().toString(),world.getServer());
                 }
                 else {
-                    ((MobSpawnerBlockEntity) blockEntity).getLogic().setEntityId(EntityType.CAVE_SPIDER);
+                    setSpawnerMob(blockEntity, pos, world, EntityType.CAVE_SPIDER);
                     logChanges("[TileFixer] fixed mineshaft spawner! "+pos.toShortString()+" in "+world.getRegistryKey().getValue().toString(),world.getServer());
                 }
             }
@@ -63,15 +65,24 @@ public class SpawnerBlockMixin extends Block {
                     }
                 }
                 if (!isBastion) {
-                    ((MobSpawnerBlockEntity) blockEntity).getLogic().setEntityId(EntityType.BLAZE);
+                    setSpawnerMob(blockEntity, pos, world, EntityType.BLAZE);
                     logChanges("[TileFixer] fixed fortress spawner! "+pos.toShortString()+" in "+world.getRegistryKey().getValue().toString(),world.getServer());
                 }
                 else {
-                    ((MobSpawnerBlockEntity) blockEntity).getLogic().setEntityId(EntityType.MAGMA_CUBE);
+                    setSpawnerMob(blockEntity, pos, world, EntityType.MAGMA_CUBE);
                     logChanges("[TileFixer] fixed bastion spawner! "+pos.toShortString()+" in "+world.getRegistryKey().getValue().toString(),world.getServer());
                 }
             }
         }
+    }
+
+    private void setSpawnerMob(BlockEntity blockEntity, BlockPos blockPos, World world, EntityType<?> entityType) {
+        MobSpawnerLogic mobSpawnerLogic = ((MobSpawnerBlockEntity)blockEntity).getLogic();
+        mobSpawnerLogic.setEntityId(entityType);
+        blockEntity.markDirty();
+        BlockState blockState = world.getBlockState(blockPos);
+        world.updateListeners(blockPos, blockState, blockState, 3);
+        world.emitGameEvent(null, GameEvent.BLOCK_CHANGE, blockPos);
     }
 
     private void logChanges(String string, MinecraftServer server) {

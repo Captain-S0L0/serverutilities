@@ -37,6 +37,7 @@ public class AbstractDonkeyEntityMixin extends AbstractHorseEntity {
                     nbtList.add(nbtCompound);
                     RemovalReason reason = ADE_instance.getRemovalReason();
                     if (reason == RemovalReason.UNLOADED_TO_CHUNK || reason == RemovalReason.UNLOADED_WITH_PLAYER || reason == RemovalReason.CHANGED_DIMENSION) {
+                        this.items.setStack(i,itemStack.copy());
                         itemStack.setCount(0);
                     }
                 }
