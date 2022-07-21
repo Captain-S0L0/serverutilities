@@ -1,6 +1,7 @@
 # serverutilities
 a collection of exploit fixes, commands, and other things for fabric mc
 
+DISCLAIMER: THIS MOD IS LIKELY GOING TO HAVE ISSUES. I AM NOT RESPONSIBLE FOR YOU BRICKING YOUR WORLD FROM USING IT. MAKE A BACKUP, PLEASE.
 
 This mod is not really intended to be an uber maintained project, it is more of a passion project for my minecraft server, Terrible Friends. Of course, if you have any bugs, PLEASE REPORT THEM!!!
 
