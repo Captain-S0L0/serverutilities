@@ -76,3 +76,7 @@
 - removal of crappy actionratelimit system
 0.2.0
 - cleanup and updating of readme / todos / etc
+0.2.1
+- fixed cached chunks not updating their contents when item shadows were removed
+- fixed me forgetting chest boats existing
+- added config file and configurable URLs for /discord and /dynmap

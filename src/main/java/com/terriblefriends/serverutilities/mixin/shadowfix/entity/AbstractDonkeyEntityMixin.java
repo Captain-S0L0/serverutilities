@@ -1,6 +1,5 @@
 package com.terriblefriends.serverutilities.mixin.shadowfix.entity;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AbstractDonkeyEntity;
 import net.minecraft.entity.passive.AbstractHorseEntity;

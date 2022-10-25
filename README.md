@@ -20,8 +20,8 @@ This mod includes several features for the purposes of easing administration or 
   
   
 **GENERAL COMMANDS (no permissions needed):**
-  - /discord : prints a clickable discord link in chat, hardcoded for now
-  - /dynmaplink : prints a clickable dynmap link in chat, hardcoded for now
+  - /discord : prints a clickable discord link in chat, configurable in config
+  - /dynmaplink : prints a clickable dynmap link in chat, configurable in config
   - /getweather : print all the internal weather counters
   - /setscoreboard (scoreboard) : set the sidebar scoreboard. Useful with a datapack that makes scoreboards for all statistics.
   - /suicide : kill the executor
@@ -70,7 +70,7 @@ This mod includes several features for the purposes of easing administration or 
   
 
 **TODO**
-  - make a god damn config file for things like /discord and /dynmaplink.
+  - ~~make a god damn config file for things like /discord and /dynmaplink.~~ DONE!
   - store horse speeds when they are reduced so they can be restored later
   - some general better anticheat things, like antifly
   - prevent nether portal generation in spawn

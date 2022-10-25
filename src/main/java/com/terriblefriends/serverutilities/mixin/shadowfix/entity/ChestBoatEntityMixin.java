@@ -1,10 +1,8 @@
 package com.terriblefriends.serverutilities.mixin.shadowfix.entity;
 
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.vehicle.AbstractMinecartEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.entity.vehicle.ChestBoatEntity;
-import net.minecraft.entity.vehicle.StorageMinecartEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
@@ -59,9 +57,5 @@ public abstract class ChestBoatEntityMixin extends BoatEntity {
         }
 
         if (ci.isCancellable()) {ci.cancel();}
-    }
-
-    public Type getMinecartType() {
-        return null;
     }
 }
