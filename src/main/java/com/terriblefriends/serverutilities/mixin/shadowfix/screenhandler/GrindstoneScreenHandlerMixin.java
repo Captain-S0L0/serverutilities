@@ -21,10 +21,7 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
-
-import java.util.Iterator;
 import java.util.Map;
 
 @Mixin(GrindstoneScreenHandler.class)
@@ -73,12 +70,10 @@ public class GrindstoneScreenHandlerMixin extends ScreenHandler {
                 private int getExperience(ItemStack stack) {
                     int i = 0;
                     Map<Enchantment, Integer> map = EnchantmentHelper.get(stack);
-                    Iterator var4 = map.entrySet().iterator();
 
-                    while(var4.hasNext()) {
-                        Map.Entry<Enchantment, Integer> entry = (Map.Entry)var4.next();
-                        Enchantment enchantment = entry.getKey();
-                        Integer integer = entry.getValue();
+                    for (Map.Entry<Enchantment, Integer> enchantmentIntegerEntry : map.entrySet()) {
+                        Enchantment enchantment = enchantmentIntegerEntry.getKey();
+                        Integer integer = enchantmentIntegerEntry.getValue();
                         if (!enchantment.isCursed()) {
                             i += enchantment.getMinPower(integer);
                         }
@@ -100,7 +95,7 @@ public class GrindstoneScreenHandlerMixin extends ScreenHandler {
         ItemStack originalStack = slot.getStack();
         slot.setStack(originalStack.copy());
         originalStack.setCount(0);
-        if (slot != null && slot.hasStack()) {
+        if (slot.hasStack()) {
             ItemStack itemStack2 = slot.getStack();
             itemStack = itemStack2.copy();
             ItemStack itemStack3 = this.input.getStack(0);

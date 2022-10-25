@@ -5,36 +5,27 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EnderChestInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin {
+    @Shadow protected EnderChestInventory enderChestInventory;
     PlayerEntity PE_instance = (PlayerEntity) (Object) this;
 
-    @Redirect(at=@At(value="INVOKE",target="Lnet/minecraft/inventory/EnderChestInventory;toNbtList()Lnet/minecraft/nbt/NbtList;"),method="writeCustomDataToNbt")
-    private NbtList toNbtListDestroyShadows(EnderChestInventory instance) {
+    @Inject(at=@At("HEAD"),method="writeCustomDataToNbt")
+    private void toNbtListDestroyShadows(NbtCompound nbt, CallbackInfo ci) {
         if (PE_instance.getRemovalReason() == Entity.RemovalReason.UNLOADED_WITH_PLAYER) {
-            NbtList nbtList = new NbtList();
-
-            for(int i = 0; i < instance.size(); ++i) {
-                ItemStack itemStack = instance.getStack(i);
-                if (!itemStack.isEmpty()) {
-                    NbtCompound nbtCompound = new NbtCompound();
-                    nbtCompound.putByte("Slot", (byte)i);
-                    itemStack.writeNbt(nbtCompound);
-                    nbtList.add(nbtCompound);
-                    instance.setStack(i,itemStack.copy());
+            for (int i = 0; i < enderChestInventory.size(); ++i) {
+                if (!(enderChestInventory.getStack(i)).isEmpty()) {
+                    ItemStack itemStack = enderChestInventory.getStack(i);
+                    enderChestInventory.setStack(i,itemStack.copy());
                     itemStack.setCount(0);
                 }
             }
-            return nbtList;
-        }
-        else {
-            return instance.toNbtList();
         }
     }
-
 }

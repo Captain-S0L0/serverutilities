@@ -16,6 +16,7 @@
     "dupefix.VillagerEntityMixin",
     "dupefix.WanderingTraderEntityMixin",
     "dupefix.GiveInventoryToLookTargetTaskMixin",
+    "dupefix.ItemFrameEntityMixin",
 
     "command.NoEndMixin",
     "command.MessageCommandMixin",
@@ -34,6 +35,7 @@
     "shadowfix.player.WorldSaveHandlerMixin",
     "shadowfix.player.PlayerInventoryMixin",
     "shadowfix.player.PlayerEntityMixin",
+    "shadowfix.player.PlayerManagerMixin",
 
     "shadowfix.blockentity.BlockEntityMixin",
     "shadowfix.blockentity.ShulkerBoxBlockMixin",
@@ -77,10 +79,10 @@
     "PlayerManagerMixin"
   ],
   "client": [
-    "shadowfix.player.PlayerManagerMixin_CLIENT"
+
   ],
   "server": [
-    "shadowfix.player.PlayerManagerMixin_SERVER"
+
   ],
   "injectors": {
     "defaultRequire": 1

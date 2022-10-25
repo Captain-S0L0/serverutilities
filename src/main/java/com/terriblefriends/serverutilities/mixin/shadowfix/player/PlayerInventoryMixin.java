@@ -3,7 +3,6 @@ package com.terriblefriends.serverutilities.mixin.shadowfix.player;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
