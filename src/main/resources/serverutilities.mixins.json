@@ -44,6 +44,7 @@
     "shadowfix.entity.ServerEntityManagerMixin",
     "shadowfix.entity.StorageMinecartEntityMixin",
     "shadowfix.entity.EntityMixin",
+    "shadowfix.entity.ChestBoatEntityMixin",
 
     "shadowfix.screenhandler.AnvilScreenHandlerMixin",
     "shadowfix.screenhandler.GrindstoneScreenHandlerMixin",

@@ -6,8 +6,8 @@ Anti-dupes / exploits:
 - prevents general packet nasties with a player action packet rate limit (hardcoded)
 
 Commands:
-- /discord: prints the Terrible Friends discord link. hardcoded.
-- /dynmaplink: prints the Terrible Friends dynmap link. hardcoded.
+- /discord: prints the Terrible Friends discord link. configurable in the config file.
+- /dynmaplink: prints the Terrible Friends dynmap link. configurable in the config file.
 - /fly <player> : toggles allowFlying
 - /flyspeed <float> <player> : sets flySpeed, default is 0.05
 - /getweather : prints debug about the weather in a world

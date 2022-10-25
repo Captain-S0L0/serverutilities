@@ -1,6 +1,7 @@
 package com.terriblefriends.serverutilities;
 
 import com.terriblefriends.serverutilities.command.*;
+import com.terriblefriends.serverutilities.config.Config;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -33,6 +34,8 @@ public class ServerUtilities implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        Config.load();
+        Config.save();
         //Everyone Commands
         CommandRegistrationCallback.EVENT.register(DiscordCommand::register); // discord
         CommandRegistrationCallback.EVENT.register(DynmapCommand::register); // dynmap
