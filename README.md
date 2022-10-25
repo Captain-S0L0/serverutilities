@@ -37,6 +37,7 @@ This mod includes several features for the purposes of easing administration or 
   - Prevents a *lot* of dupes with shadowed items, including unloading to disk, transferStack, droppers, etc.
   - Fixes allays dropping items and teleporting in the same tick
   - Fixes lectern transferStack crash
+  - Fixes general item duplication via update suppression and item frames (if you retroactively allow update suppression, of course)
 
 **Gamerules (default in parenthesis)**
   - (false) "ghostAdventureMode" : toggle ghost adventure mode
@@ -72,6 +73,7 @@ This mod includes several features for the purposes of easing administration or 
 
 **TODO**
   - ~~make a god damn config file for things like /discord and /dynmaplink.~~ DONE!
+  - fix block duplication with update suppression
   - store horse speeds when they are reduced so they can be restored later
   - some general better anticheat things, like antifly
   - prevent nether portal generation in spawn
