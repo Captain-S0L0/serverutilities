@@ -7,20 +7,21 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.stat.Stats;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import javax.annotation.Nullable;
 import java.util.UUID;
 
 @Mixin(ItemEntity.class)
 public class ItemEntityMixin {
     ItemEntity IE_instance = (ItemEntity) (Object) this;
     @Shadow private int pickupDelay;
-    @Shadow @Nullable private UUID owner;
+    @Shadow @Nullable
+    private UUID owner;
     @Shadow private int health;
     @Shadow private int itemAge;
 

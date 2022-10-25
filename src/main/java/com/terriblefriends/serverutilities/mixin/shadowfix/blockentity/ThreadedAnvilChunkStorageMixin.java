@@ -5,6 +5,8 @@ import it.unimi.dsi.fastutil.longs.Long2LongMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.longs.LongSet;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.server.WorldGenerationProgressListener;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.BlockPos;
@@ -96,10 +98,11 @@ public abstract class ThreadedAnvilChunkStorageMixin {
     @Inject(at=@At("HEAD"),method="save(Lnet/minecraft/world/chunk/Chunk;)Z")
     private void blockEntityShadowDeletion(Chunk chunk, CallbackInfoReturnable<Boolean> cir) {
         if (chunk instanceof WorldChunk && !((WorldChunk)chunk).loadedToWorld) {
+            chunk.setNeedsSaving(true);
             for (BlockPos blockPos : chunk.getBlockEntityPositions()) {
                 BlockEntity blockEntity = chunk.getBlockEntity(blockPos);
                 if (blockEntity != null) {
-                    ((BlockEntityAccessor) blockEntity).destroyShadows();
+                    ((BlockEntityAccessor) blockEntity).destroyShadows(chunk);
                 }
             }
         }
