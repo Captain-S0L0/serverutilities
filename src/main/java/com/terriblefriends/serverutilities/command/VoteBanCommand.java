@@ -2,10 +2,9 @@ package com.terriblefriends.serverutilities.command;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.terriblefriends.serverutilities.ServerUtilities;
-import net.minecraft.client.network.Address;
+import com.terriblefriends.serverutilities.config.Config;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.command.argument.MessageArgumentType;
@@ -15,9 +14,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.ClickEvent;
 import net.minecraft.text.MutableText;
-import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -26,7 +23,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import static com.mojang.brigadier.arguments.StringArgumentType.getString;
 import static net.minecraft.command.argument.EntityArgumentType.getPlayer;
 import static net.minecraft.command.argument.MessageArgumentType.getMessage;
 import static net.minecraft.server.command.CommandManager.argument;
@@ -39,7 +35,7 @@ public class VoteBanCommand {
     static List<String> addresses = new ArrayList();
     static List<VoteBanInstance> voteBanInstances = new ArrayList();
     private static final MutableText SystemName = Text.literal("[VoteBan]").formatted(Formatting.DARK_RED);
-    private static final String BAN_REASON = "You have been temp banned by the vote system! If this is in error, please contact Captain_S0L0#9809 on the discord at \"discord.terriblefriends.ml\".";
+    private static final String BAN_REASON = "You have been temp banned by the vote system! If this is in error, please contact "+ Config.get().ownerDiscord+" on the discord at \""+Config.get().discordUrl+"\".";
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess registryAccess, CommandManager.RegistrationEnvironment environment) {
         dispatcher.register(literal("voteban")
@@ -55,7 +51,7 @@ public class VoteBanCommand {
         source.sendFeedback(Text.literal("The VoteBan system is a tool to remove players that are breaking the rules until an Administrator can intervene.").formatted(Formatting.YELLOW),false);
         source.sendFeedback(Text.literal("This system is NOT to be abused. Any abuse of this system will be met with a permanent ban.").formatted(Formatting.RED),false);
         source.sendFeedback(Text.literal("To use the system, use \"/voteban vote <playername> <reason>\" to begin the voting process.").formatted(Formatting.YELLOW),false);
-        source.sendFeedback(Text.literal("A minimum of 3 votes are required, and alt accounts cannot count as extra votes. The votes necessary increase with the playercount.").formatted(Formatting.YELLOW),false);
+        source.sendFeedback(Text.literal("A minimum of "+source.getServer().getOverworld().getGameRules().getInt(ServerUtilities.VOTEBAN_MINIMUM)+" votes are required, and alt accounts cannot count as extra votes. The votes necessary increase with the playercount.").formatted(Formatting.YELLOW),false);
     return 1;
     }
 
@@ -194,6 +190,6 @@ public class VoteBanCommand {
     }
 
     private static int getVotesNeeded(MinecraftServer server) {
-        return Math.max(((int)( server.getPlayerManager().getPlayerList().size() * (server.getOverworld().getGameRules().getInt(ServerUtilities.VOTEBAN_PERCENTAGE)*.01) )), 3);
+        return Math.max(((int)( server.getPlayerManager().getPlayerList().size() * (server.getOverworld().getGameRules().getInt(ServerUtilities.VOTEBAN_PERCENTAGE)*.01) )), server.getOverworld().getGameRules().getInt(ServerUtilities.VOTEBAN_MINIMUM));
     }
 }

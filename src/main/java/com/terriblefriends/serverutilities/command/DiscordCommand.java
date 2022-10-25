@@ -21,8 +21,7 @@ public class DiscordCommand {
     }
 
     private static int discord(ServerCommandSource source) throws CommandSyntaxException {
-        ClickEvent link = new ClickEvent(ClickEvent.Action.OPEN_URL, Config.get().dynmapUrl);
-        //source.getPlayer().sendMessage(new LiteralTextContent("[Discord Link (Click Me!)]").(Style.EMPTY.withClickEvent(link)).formatted(Formatting.BLUE).formatted(Formatting.UNDERLINE));
+        ClickEvent link = new ClickEvent(ClickEvent.Action.OPEN_URL, Config.get().discordUrl);
         source.getPlayer().sendMessage(Text.literal("[Discord Link (Click Me!)]").setStyle(Style.EMPTY.withClickEvent(link)).formatted(Formatting.BLUE,Formatting.UNDERLINE));
 
         return 1;

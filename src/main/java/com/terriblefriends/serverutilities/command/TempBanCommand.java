@@ -3,8 +3,6 @@ package com.terriblefriends.serverutilities.command;
 import com.mojang.authlib.GameProfile;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import net.minecraft.command.CommandRegistryAccess;
@@ -22,8 +20,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
-
-import static net.minecraft.server.command.CommandManager.literal;
 
 public class TempBanCommand {
 

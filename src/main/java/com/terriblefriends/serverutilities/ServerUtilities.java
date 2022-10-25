@@ -30,6 +30,8 @@ public class ServerUtilities implements ModInitializer {
             GameRuleRegistry.register("throwableFireballPower", GameRules.Category.MISC,GameRuleFactory.createIntRule(1));
     public static final GameRules.Key<GameRules.IntRule> VOTEBAN_PERCENTAGE =
             GameRuleRegistry.register("voteBanPercentage", GameRules.Category.MISC,GameRuleFactory.createIntRule(66,1,100));
+    public static final GameRules.Key<GameRules.IntRule> VOTEBAN_MINIMUM =
+            GameRuleRegistry.register("voteBanMinimum", GameRules.Category.MISC,GameRuleFactory.createIntRule(3));
 
 
     @Override
