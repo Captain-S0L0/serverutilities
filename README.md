@@ -25,8 +25,8 @@ This mod includes several features for the purposes of easing administration or 
   - /getweather : print all the internal weather counters
   - /setscoreboard (scoreboard) : set the sidebar scoreboard. Useful with a datapack that makes scoreboards for all statistics.
   - /suicide : kill the executor
-  - /vote : prints links to voting sites, hardcoded for now
-  - /voteban (player) (reason) : initiates a vote ban to temp ban a player for 24 hours. Customizable player percentage required, minimum of 3 players needed
+  - /vote : prints links to voting sites, configurable in config
+  - /voteban (player) (reason) : initiates a vote ban to temp ban a player for 24 hours. Customizable player percentage required, customizable minimum vote requirement via gamerule
 
   
 **Anti-dupes / exploits:**
@@ -47,6 +47,7 @@ This mod includes several features for the purposes of easing administration or 
   - (false) "throwableFireballs" : if true, fire charges can be used in the air / on blocks to spawn fireballs. If shift is held, vanilla function will still work.
   - (1) "throwableFireballPower" : sets the explosion power of thrown fireballs
   - (66) "voteBanPercentage" : sets the percentage required for a vote ban to pass
+  - (3) "voteBanMinimum" : sets the minimum amount of votes for a vote ban to pass
   
   
 **"Ghost" Adventure Mode Modifiers:**
@@ -79,6 +80,7 @@ This mod includes several features for the purposes of easing administration or 
 
 **Credits (aka people's code I've used / taken inspiration from / adapted / etc.)**
 - https://github.com/Chropal/nocom_patch/, for a much better patch than the one I made that I "borrowed".
+- https://github.com/19MisterX98/SeedcrackerX/, for the config file lol
 
 **Using my code**
 
