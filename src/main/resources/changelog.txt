@@ -83,3 +83,5 @@
 0.2.2
 - more configurable options
 - fixes and rework of shadow item deletion with players and entities
+0.2.3
+- fix item deletion bug with item frames

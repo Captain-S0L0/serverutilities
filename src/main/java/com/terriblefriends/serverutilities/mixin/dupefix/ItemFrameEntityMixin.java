@@ -37,10 +37,11 @@ public class ItemFrameEntityMixin {
                             if (cir.isCancellable()) {cir.cancel();}
                         }
                     }
+                    ItemStack copyStack = itemStack.copy();
                     if (!player.getAbilities().creativeMode) {
                         itemStack.decrement(1);
                     }
-                    IFE_instance.setHeldItemStack(itemStack);
+                    IFE_instance.setHeldItemStack(copyStack);
                 }
             } else {
                 IFE_instance.playSound(IFE_instance.getRotateItemSound(), 1.0F, 1.0F);
