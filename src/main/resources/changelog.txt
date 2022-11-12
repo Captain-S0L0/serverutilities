@@ -85,3 +85,5 @@
 - fixes and rework of shadow item deletion with players and entities
 0.2.3
 - fix item deletion bug with item frames
+0.2.4
+- FIXING THE DAMN TILE ENTITY DELETION BUG AGAIN FOR THE THIRD TIME

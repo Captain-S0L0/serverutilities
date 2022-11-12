@@ -95,7 +95,7 @@ public abstract class ThreadedAnvilChunkStorageMixin {
         });*/
     //}
 
-    @Inject(at=@At("HEAD"),method="save(Lnet/minecraft/world/chunk/Chunk;)Z")
+    /*@Inject(at=@At("HEAD"),method="save(Lnet/minecraft/world/chunk/Chunk;)Z", cancellable = true)
     private void blockEntityShadowDeletion(Chunk chunk, CallbackInfoReturnable<Boolean> cir) {
         if (chunk instanceof WorldChunk && !((WorldChunk)chunk).loadedToWorld) {
             chunk.setNeedsSaving(true);
@@ -105,6 +105,28 @@ public abstract class ThreadedAnvilChunkStorageMixin {
                     ((BlockEntityAccessor) blockEntity).destroyShadows(chunk);
                 }
             }
+        }
+    }*/
+
+    @Inject(at=@At("HEAD"),method="save(Lnet/minecraft/world/chunk/Chunk;)Z", cancellable = true)
+    private void blockEntityShadowDeletion(Chunk chunk, CallbackInfoReturnable<Boolean> cir) {
+        if (chunk instanceof WorldChunk && !((WorldChunk)chunk).loadedToWorld && chunk.getStatus().getChunkType() == ChunkStatus.ChunkType.LEVELCHUNK) {
+            //boolean hasBeenEdited = false;
+            for (BlockPos blockPos : chunk.getBlockEntityPositions()) {
+                BlockEntity blockEntity = chunk.getBlockEntity(blockPos);
+                if (blockEntity != null) {
+                    if (((BlockEntityAccessor) blockEntity).destroyShadows(chunk)) {
+                        blockEntity.markDirty();
+                        //hasBeenEdited = true;
+                        chunk.setNeedsSaving(true);
+                        System.out.println("modified "+chunk.getPos().toString());
+                    }
+                }
+            }
+            /*if (hasBeenEdited) {
+                cir.setReturnValue(false);
+                cir.cancel();
+            }*/
         }
     }
 }

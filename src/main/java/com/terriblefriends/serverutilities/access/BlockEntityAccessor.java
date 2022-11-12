@@ -4,6 +4,6 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.chunk.Chunk;
 
 public interface BlockEntityAccessor {
-    void destroyShadows(Chunk chunk);
+    boolean destroyShadows(Chunk chunk);
     NbtCompound createNbtShulkerDestroyShadows();
 }

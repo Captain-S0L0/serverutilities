@@ -9,11 +9,14 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.chunk.Chunk;
 import org.spongepowered.asm.mixin.Mixin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Mixin(BlockEntity.class)
 public class BlockEntityMixin implements BlockEntityAccessor {
     BlockEntity BE_instance = (BlockEntity) (Object) this;
 
-    public void destroyShadows(Chunk chunk) {
+    public boolean destroyShadows(Chunk chunk) {
         NbtCompound returnValue = BE_instance.createNbt();
 
         DefaultedList<ItemStack> inventoryToClear = DefaultedList.ofSize(0, ItemStack.EMPTY);
@@ -57,6 +60,13 @@ public class BlockEntityMixin implements BlockEntityAccessor {
         }*/
 
         if (inventoryToClear.size() != 0) {
+            //DefaultedList<ItemStack> inventoryOriginal = DefaultedList.ofSize(inventoryToClear.size(), ItemStack.EMPTY);
+            DefaultedList<Boolean> inventoryOriginal = DefaultedList.ofSize(inventoryToClear.size(), false);
+            for(int i = 0; i < inventoryToClear.size(); ++i) {
+                if (!inventoryToClear.get(i).isEmpty()) inventoryOriginal.set(i, true);
+                //inventoryOriginal.set(i,inventoryToClear.get(i).copy());
+            }
+
             for(int i = 0; i < inventoryToClear.size(); ++i) {
                 ItemStack itemStack = inventoryToClear.get(i);
                 if (!itemStack.isEmpty()) {
@@ -64,7 +74,12 @@ public class BlockEntityMixin implements BlockEntityAccessor {
                     itemStack.setCount(0);
                 }
             }
+            for(int i = 0; i < inventoryToClear.size(); ++i) {
+                //if (!ItemStack.areEqual(inventoryOriginal.get(i),(inventoryToClear.get(i)))) return true;
+                if (inventoryToClear.get(i).isEmpty() && inventoryOriginal.get(i)) return true;
+            }
         }
+        return false;
     }
 
     public NbtCompound createNbtShulkerDestroyShadows() {
