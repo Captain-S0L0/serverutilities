@@ -26,6 +26,9 @@
     "command.AbstractMinecartEntityMixin",
     "command.FireChargeItemMixin",
     "command.PhantomEntityMixin",
+    "command.ServerPlayerEntityMixin",
+    "command.PlayerManagerMixin",
+    "command.ServerScoreboardMixin",
 
     "misc.LecternScreenHandlerMixin",
     "misc.BeehiveBlockEntityMixin",
@@ -75,8 +78,7 @@
     "shadowfix.block.SetTickingInterface",
     "shadowfix.block.MobSpawnerLogicAccess",
 
-    "ServerPlayNetworkHandlerMixin",
-    "PlayerManagerMixin"
+    "ServerPlayNetworkHandlerMixin"
   ],
   "client": [
 

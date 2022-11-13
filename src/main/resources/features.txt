@@ -12,7 +12,7 @@ Commands:
 - /flyspeed <float> <player> : sets flySpeed, default is 0.05
 - /getweather : prints debug about the weather in a world
 - /god <player> : toggles invulnerability
-- /setscoreboard <scoreboard> : sets the sidebar display to the selected scoreboard
+- /setscoreboard <scoreboard>/blank : sets or removes the sidebar display to the selected scoreboard for executor only
 - /shadow
 - /setweathertime <rain/thunder/clear> <ticks> : sets the selected weather timer
 - /opwp <power> : op a player with a custom operator level

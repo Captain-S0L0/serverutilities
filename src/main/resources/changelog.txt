@@ -87,3 +87,5 @@
 - fix item deletion bug with item frames
 0.2.4
 - FIXING THE DAMN TILE ENTITY DELETION BUG AGAIN FOR THE THIRD TIME
+0.3.0
+- rework of /setscoreboard and scoreboard backend to allow for per-player sidebar scoreboard display

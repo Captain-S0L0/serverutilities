@@ -119,7 +119,6 @@ public abstract class ThreadedAnvilChunkStorageMixin {
                         blockEntity.markDirty();
                         //hasBeenEdited = true;
                         chunk.setNeedsSaving(true);
-                        System.out.println("modified "+chunk.getPos().toString());
                     }
                 }
             }

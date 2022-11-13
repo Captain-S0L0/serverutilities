@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(ServerPlayerEntity.class)
-public class ServerPlayerEntityMixin implements ServerPlayerEntityAccess {
+public abstract class ServerPlayerEntityMixin implements ServerPlayerEntityAccess {
     @Shadow ServerPlayerInteractionManager interactionManager;
     public boolean isAdventure() {
         return this.interactionManager.getGameMode() == GameMode.ADVENTURE;
