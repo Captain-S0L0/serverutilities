@@ -145,8 +145,11 @@ public class VoteBanCommand {
             int votesRequired = getVotesNeeded(source.getServer());
             source.getServer().getPlayerManager().broadcast(SystemName.copy().append(Text.literal(" "+source.getPlayer().getEntityName()+" voted.").formatted(Formatting.RED)),MessageType.SYSTEM);
             source.getServer().getPlayerManager().broadcast(SystemName.copy().append(Text.literal(" ("+votes.size()+"/"+votesRequired+") votes received.").formatted(Formatting.GOLD)),MessageType.SYSTEM);
+
+            Date expiry = new Date(System.currentTimeMillis()+(source.getServer().getOverworld().getGameRules().get(ServerUtilities.VOTEBAN_DURATION).get()* 86400000L));
+
             if (votes.size() >= votesRequired) {
-                BannedPlayerEntry newBan = new BannedPlayerEntry(new GameProfile(currentBanTargetUuid, null),null, "VoteBan System", new Date(System.currentTimeMillis()+86400000),BAN_REASON);
+                BannedPlayerEntry newBan = new BannedPlayerEntry(new GameProfile(currentBanTargetUuid, null),new Date(System.currentTimeMillis()), "VoteBan System", expiry,BAN_REASON);
                 source.getServer().getPlayerManager().getUserBanList().add(newBan);
                 ServerPlayerEntity serverPlayerEntity = source.getServer().getPlayerManager().getPlayer(currentBanTargetUuid);
                 if (serverPlayerEntity != null) {

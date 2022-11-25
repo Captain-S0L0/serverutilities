@@ -23,12 +23,12 @@
     "command.ServerWorldMixin",
     "command.SetPlayerAbilitiesMixin",
     "command.HorseBaseEntityMixin",
-    "command.AbstractMinecartEntityMixin",
     "command.FireChargeItemMixin",
     "command.PhantomEntityMixin",
     "command.ServerPlayerEntityMixin",
     "command.PlayerManagerMixin",
     "command.ServerScoreboardMixin",
+    "command.ServerPlayNetworkHandlerMixin",
 
     "misc.LecternScreenHandlerMixin",
     "misc.BeehiveBlockEntityMixin",

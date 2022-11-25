@@ -1,4 +1,4 @@
-package com.terriblefriends.serverutilities.mixin.command;
+/*package com.terriblefriends.serverutilities.mixin.command;
 
 import com.terriblefriends.serverutilities.ServerUtilities;
 import net.minecraft.block.BlockState;
@@ -26,4 +26,4 @@ public abstract class AbstractMinecartEntityMixin extends Entity {
         cir.setReturnValue(blockState.isIn(BlockTags.RAILS) ? this.world.getGameRules().getInt(ServerUtilities.MINECART_SPEED_MULTIPLIER) : super.getVelocityMultiplier());
         if (cir.isCancellable()) {cir.cancel();}
     }
-}
+}*/

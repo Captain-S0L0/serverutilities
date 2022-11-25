@@ -19,6 +19,13 @@ public class Config {
             "https://servers-minecraft.net/server-terrible-friends.20149"
     };
     public String voteInfo = "Voting helps us keep the server active! You also will receive a vote token with each vote, which can be spent at spawn for cool items!";
+    public boolean enableDiscordCommand = true;
+    public boolean enableDynmapCommand = true;
+    public boolean enableGetWeatherCommand = true;
+    public boolean enableSetScoreboardCommand = true;
+    public boolean enableSuicideCommand = true;
+    public boolean enableVoteCommand = true;
+    public boolean enableVoteBanCommand = true;
 
     public static void load() {
         Gson gson = new Gson();

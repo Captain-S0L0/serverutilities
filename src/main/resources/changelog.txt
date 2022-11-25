@@ -89,3 +89,10 @@
 - FIXING THE DAMN TILE ENTITY DELETION BUG AGAIN FOR THE THIRD TIME
 0.3.0
 - rework of /setscoreboard and scoreboard backend to allow for per-player sidebar scoreboard display
+0.3.1
+- toggle "everyone" commands via config file
+0.4.0
+- addition of gamerule "hardcoreDeathBan" and "hardcoreDeathBanDuration" to auto ban players, with a specified duration (or 0 for infinite) to prevent spectator abuse
+- slight tweak of voteban system to include the time of the ban in the ban constructor
+- addition of gamerule "voteBanDuration" to control duration of voteban temp bans
+- removal of jank minecart speed change code / gamerule
