@@ -19,14 +19,14 @@ This mod includes several features for the purposes of easing administration or 
   - (3) /whereis (player) : gets last/current location of player. Can be online or offline
   
   
-**GENERAL COMMANDS (no permissions needed):**
+**GENERAL COMMANDS (no permissions needed, can be toggled on/off in config):**
   - /discord : prints a clickable discord link in chat, configurable in config
   - /dynmaplink : prints a clickable dynmap link in chat, configurable in config
   - /getweather : print all the internal weather counters
-  - /setscoreboard (scoreboard) : set the sidebar scoreboard. Useful with a datapack that makes scoreboards for all statistics.
+  - /setscoreboard (scoreboard) : set the user's sidebar scoreboard. Useful with a datapack that makes scoreboards for all statistics.
   - /suicide : kill the executor
   - /vote : prints links to voting sites, configurable in config
-  - /voteban (player) (reason) : initiates a vote ban to temp ban a player for 24 hours. Customizable player percentage required, customizable minimum vote requirement via gamerule
+  - /voteban (player) (reason) : initiates a vote ban to temp ban a player for 24 hours. Customizable player percentage required, minimum vote requirement, and ban duration via gamerule + some messages configurable in config
 
   
 **Anti-dupes / exploits:**
@@ -41,14 +41,17 @@ This mod includes several features for the purposes of easing administration or 
 
 **Gamerules (default in parenthesis)**
   - (false) "ghostAdventureMode" : toggle ghost adventure mode
-  - (false) "endDisabled" : if true, will prevent eyes from being placed into end portals. If you have a seed with a 12 eye portal / portals already opened, then you're out of luck. I just use this to prevent people from speedrunning the dragon before the server-wide event for it.  
+  - (false) "endDisabled" : if true, will prevent eyes from being placed into end portals. If you have a seed with a 12 eye portal / portals already opened, then you're out of luck. I just use this to prevent people from speedrunning the dragon before the server-wide event for it.
+  - (false) "hardcoreDeathBan" : bans players on death instead of setting them to spectator mode
+  - (0) "hardcoreDeathBanDuration" : optional duration for bans from hardcore deaths, in days. Setting to 0 sets no expiration.
   - (1) "horseSpeedMultiplier" : changes max speed horses can spawn with
   - (false) "lobotomizePhantoms" :  if true, prevents phantoms from attacking  
-  - (1) "minecartSpeedMultiplier" : currently does nothing / is broken. Remnant of experiements I didn't ever remove.
   - (false) "throwableFireballs" : if true, fire charges can be used in the air / on blocks to spawn fireballs. If shift is held, vanilla function will still work.
   - (1) "throwableFireballPower" : sets the explosion power of thrown fireballs
-  - (66) "voteBanPercentage" : sets the percentage required for a vote ban to pass
+  - (1) "voteBanDuration" : duration, in days, of vote bans
   - (3) "voteBanMinimum" : sets the minimum amount of votes for a vote ban to pass
+  - (66) "voteBanPercentage" : sets the percentage required for a vote ban to pass
+
   
   
 **"Ghost" Adventure Mode Modifiers:**
