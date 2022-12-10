@@ -9,6 +9,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.packet.c2s.play.ClientStatusC2SPacket;
 import net.minecraft.server.BannedPlayerEntry;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.OperatorEntry;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -23,6 +24,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Arrays;
 import java.util.Date;
 
 @Mixin(ServerPlayNetworkHandler.class)
@@ -51,7 +53,8 @@ public class ServerPlayNetworkHandlerMixin {
 
                     this.player = this.server.getPlayerManager().respawnPlayer(this.player, false);
                     if (this.server.isHardcore()) {
-                        if (this.player.getWorld().getGameRules().get(ServerUtilities.HARDCORE_DEATH_BAN).get()) {
+                        OperatorEntry opProfile = this.server.getPlayerManager().getOpList().get(this.player.getGameProfile());
+                        if (this.player.getWorld().getGameRules().get(ServerUtilities.HARDCORE_DEATH_BAN).get() && !(opProfile != null && opProfile.getPermissionLevel() > 0)) {
                             Date expiry;
                             if (this.player.getWorld().getGameRules().get(ServerUtilities.HARDCORE_DEATH_BAN_DURATION).get() == 0) {
                                 expiry = null;

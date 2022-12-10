@@ -96,3 +96,6 @@
 - slight tweak of voteban system to include the time of the ban in the ban constructor
 - addition of gamerule "voteBanDuration" to control duration of voteban temp bans
 - removal of jank minecart speed change code / gamerule
+0.4.1
+- prevent ops from getting banned from hardcore mode
+- rewrite op detection code to be cleaner

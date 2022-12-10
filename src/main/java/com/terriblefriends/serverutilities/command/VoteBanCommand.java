@@ -11,6 +11,7 @@ import net.minecraft.command.argument.MessageArgumentType;
 import net.minecraft.network.message.MessageType;
 import net.minecraft.server.BannedPlayerEntry;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.OperatorEntry;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -18,10 +19,7 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import static net.minecraft.command.argument.EntityArgumentType.getPlayer;
 import static net.minecraft.command.argument.MessageArgumentType.getMessage;
@@ -104,11 +102,16 @@ public class VoteBanCommand {
             source.sendFeedback(SystemName.copy().append(Text.literal(" Error! You can't vote for yourself!").formatted(Formatting.RED)), false);
             return 0;
         }
-        for (String operator: source.getServer().getPlayerManager().getOpNames()) {
+        /*for (String operator: source.getServer().getPlayerManager().getOpNames()) {
             if (operator.equals(votedOut.getEntityName())) {
                 source.sendFeedback(SystemName.copy().append(Text.literal(" Error! You can't ban an operator!").formatted(Formatting.RED)), false);
                 return 0;
             }
+        }*/
+        OperatorEntry opProfile = source.getServer().getPlayerManager().getOpList().get(votedOut.getGameProfile());
+        if (opProfile != null && opProfile.getPermissionLevel() > 0) {
+            source.sendFeedback(SystemName.copy().append(Text.literal(" Error! You can't ban an operator!").formatted(Formatting.RED)), false);
+            return 0;
         }
         if (currentBanTargetUuid == null) {
             for (VoteBanInstance VBI : voteBanInstances) {
